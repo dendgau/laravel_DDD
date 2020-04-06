@@ -20,6 +20,10 @@ class TestingController extends Controller
         parent::__construct($appService);
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function index(Request $request)
     {
         /** @var $testService TestingServiceContract */
