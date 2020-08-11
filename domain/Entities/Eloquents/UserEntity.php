@@ -12,4 +12,11 @@ class UserEntity extends BaseEntity
 {
     /** @var string $table */
     protected $table = 'users';
+
+    /** @var array $visible */
+    protected $visible = [
+        'id',
+        'name',
+        'email'
+    ];
 }

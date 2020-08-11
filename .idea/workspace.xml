@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="83c73dcb-8805-4be6-b334-b02270083931" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/Entities/Eloquents/UserEntity.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Entities/Eloquents/UserEntity.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +168,7 @@
       <workItem from="1597137179223" duration="363000" />
       <workItem from="1597137868191" duration="8000" />
       <workItem from="1597137904118" duration="1788000" />
-      <workItem from="1597139721977" duration="271000" />
+      <workItem from="1597139721977" duration="1041000" />
     </task>
     <servers />
   </component>
@@ -183,9 +184,9 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="496" y="254" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1597139721482" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1597139597693">
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1597140253965">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1597139597693" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1597140253965" />
   </component>
 </project>
