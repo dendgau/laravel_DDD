@@ -2,7 +2,7 @@
 
 namespace Domain\Contracts\Repositories;
 
-use Domain\Contracts\Repositories\Cores\BaseRepositoryContract;
+use Infrastructure\Persistences\Contracts\BaseRepositoryContract;
 
 /**
  * Interface UserRepositoryContract

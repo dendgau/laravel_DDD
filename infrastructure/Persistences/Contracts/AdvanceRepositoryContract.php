@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Contracts\Repositories\Cores;
+namespace Infrastructure\Persistences\Contracts;
 
 /**
  * Interface AdvanceRepositoryContract

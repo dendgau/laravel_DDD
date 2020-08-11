@@ -2,9 +2,9 @@
 
 namespace Domain\Repositories;
 
-use Domain\Abstractions\BaseRepository;
 use Domain\Contracts\Repositories\UserRepositoryContract;
 use Domain\Entities\Eloquents\UserEntity;
+use Infrastructure\Persistences\Abstractions\BaseRepository;
 
 /**
  * Class UserRepository

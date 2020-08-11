@@ -1,9 +1,9 @@
 <?php
 
-namespace Domain\Abstractions;
+namespace Infrastructure\Persistences\Abstractions;
 
-use Domain\Contracts\Repositories\Cores\AdvanceRepositoryContract;
-use Domain\Contracts\Repositories\Cores\BaseRepositoryContract;
+use Infrastructure\Persistences\Contracts\AdvanceRepositoryContract;
+use Infrastructure\Persistences\Contracts\BaseRepositoryContract;
 use Prettus\Repository\Eloquent\BaseRepository as AbstractionBaseRepository;
 
 /**

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83c73dcb-8805-4be6-b334-b02270083931" name="Default Changelist" comment="" />
+    <list default="true" id="83c73dcb-8805-4be6-b334-b02270083931" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/Abstractions/BaseRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/Abstractions/BaseService.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Abstractions/BaseService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/Contracts/Repositories/Cores/AdvanceRepositoryContract.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/Contracts/Repositories/Cores/BaseRepositoryContract.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/Contracts/Repositories/UserRepositoryContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Contracts/Repositories/UserRepositoryContract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/Contracts/Services/BaseServiceContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Contracts/Services/BaseServiceContract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/Repositories/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Repositories/UserRepository.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -128,6 +137,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/domain/Abstractions" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -161,6 +171,9 @@
       <workItem from="1586075305650" duration="14037000" />
       <workItem from="1586183325437" duration="27000" />
       <workItem from="1586183375896" duration="9345000" />
+      <workItem from="1597137179223" duration="363000" />
+      <workItem from="1597137868191" duration="8000" />
+      <workItem from="1597137904118" duration="651000" />
     </task>
     <servers />
   </component>
@@ -168,37 +181,13 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="480" y="158" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1586183345220">
+    <state x="496" y="254" key="com.intellij.ide.util.TipDialog" timestamp="1597137902789">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="480" y="158" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1600.860@0.0.1600.860" timestamp="1586183345220" />
-    <state x="464" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586106992495">
+    <state x="496" y="254" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1597137902789" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1597138554084">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="464" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1586106992495" />
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1586102720238">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1586102720238" />
-    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1586072210488">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1586072210488" />
-    <state x="534" y="244" key="NewPhpClassDialog" timestamp="1586191387888">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="534" y="244" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1586191387888" />
-    <state x="496" y="254" key="com.intellij.ide.util.TipDialog" timestamp="1586183377841">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="496" y="254" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1586183377841" />
-    <state x="496" y="162" width="607" height="536" key="find.popup" timestamp="1586188319372">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="496" y="162" width="607" height="536" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1586188319372" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1586190160467">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1586190160467" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1597138554084" />
   </component>
 </project>

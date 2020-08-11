@@ -2,7 +2,7 @@
 
 namespace Domain\Abstractions;
 
-use Domain\Contracts\Repositories\Cores\BaseRepositoryContract;
+use Infrastructure\Persistences\Contracts\BaseRepositoryContract;
 use Domain\Contracts\Services\BaseServiceContract;
 
 /**
