@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="83c73dcb-8805-4be6-b334-b02270083931" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/Abstractions/BaseRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/Abstractions/BaseService.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Abstractions/BaseService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/Contracts/Repositories/Cores/AdvanceRepositoryContract.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/Contracts/Repositories/Cores/BaseRepositoryContract.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/Contracts/Repositories/UserRepositoryContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Contracts/Repositories/UserRepositoryContract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/Contracts/Services/BaseServiceContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Contracts/Services/BaseServiceContract.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/Repositories/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Repositories/UserRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +166,7 @@
       <workItem from="1586183375896" duration="9345000" />
       <workItem from="1597137179223" duration="363000" />
       <workItem from="1597137868191" duration="8000" />
-      <workItem from="1597137904118" duration="651000" />
+      <workItem from="1597137904118" duration="1511000" />
     </task>
     <servers />
   </component>
@@ -181,13 +174,17 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="504" y="244" key="NewPhpClassDialog" timestamp="1597139402754">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="504" y="244" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1597139402754" />
     <state x="496" y="254" key="com.intellij.ide.util.TipDialog" timestamp="1597137902789">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="496" y="254" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1597137902789" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1597138554084">
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1597139295568">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1597138554084" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1597139295568" />
   </component>
 </project>
