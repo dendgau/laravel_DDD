@@ -2,13 +2,13 @@
 
 namespace App\Exceptions;
 
-use App\Exceptions\Abstractions\BaseException;
+use App\Exceptions\Abstractions\CustomExceptionBase;
 
 /**
  * Class BusinessException
  * @package App\Exceptions
  */
-class BusinessException extends BaseException
+class BusinessException extends CustomExceptionBase
 {
     /**
      * @return string

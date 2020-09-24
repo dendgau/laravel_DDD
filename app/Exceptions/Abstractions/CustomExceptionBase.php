@@ -7,10 +7,10 @@ use App\Exceptions\Traits\WriteLogException;
 use Exception;
 
 /**
- * Class BaseException
+ * Class CustomExceptionBase
  * @package App\Exceptions
  */
-abstract class BaseException extends Exception implements LogExceptionContract
+abstract class CustomExceptionBase extends Exception implements LogExceptionContract
 {
     use WriteLogException;
 

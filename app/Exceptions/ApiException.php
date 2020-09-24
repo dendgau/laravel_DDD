@@ -2,13 +2,13 @@
 
 namespace App\Exceptions;
 
-use App\Exceptions\Abstractions\BaseException;
+use App\Exceptions\Abstractions\CustomExceptionBase;
 
 /**
  * Class ApiException
  * @package App\Exceptions
  */
-class ApiException extends BaseException
+class ApiException extends CustomExceptionBase
 {
     /**
      * @return string

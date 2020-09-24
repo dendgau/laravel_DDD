@@ -2,23 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83c73dcb-8805-4be6-b334-b02270083931" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Exceptions/Abstractions/BaseException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Exceptions/ApiException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Exceptions/ApplicationException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Exceptions/BusinessException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Exceptions/ConsoleException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Exceptions/Contracts/LogExceptionContract.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Exceptions/Traits/WriteLogException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/log.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/testing/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel_ddd.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel_ddd.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TestingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TestingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/Services/TestingService.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Services/TestingService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Abstractions/BaseException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Abstractions/CustomExceptionBase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/ApiException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/ApiException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/ApplicationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/ApplicationException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/BusinessException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/BusinessException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/ConsoleException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/ConsoleException.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +191,7 @@
       <workItem from="1600937298311" duration="1792000" />
       <workItem from="1600939137735" duration="1861000" />
       <workItem from="1600941051203" duration="1310000" />
-      <workItem from="1600947333899" duration="259000" />
+      <workItem from="1600947333899" duration="493000" />
     </task>
     <servers />
   </component>

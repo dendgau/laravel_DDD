@@ -2,13 +2,13 @@
 
 namespace App\Exceptions;
 
-use App\Exceptions\Abstractions\BaseException;
+use App\Exceptions\Abstractions\CustomExceptionBase;
 
 /**
  * Class ConsoleException
  * @package App\Exceptions
  */
-class ConsoleException extends BaseException
+class ConsoleException extends CustomExceptionBase
 {
     /**
      * @return string
