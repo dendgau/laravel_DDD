@@ -5,6 +5,7 @@ namespace Domain\Services;
 use Domain\Abstractions\BaseService;
 use Domain\Contracts\Repositories\UserRepositoryContract;
 use Domain\Contracts\Services\TestingServiceContract;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class TestingService

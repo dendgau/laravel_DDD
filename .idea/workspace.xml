@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83c73dcb-8805-4be6-b334-b02270083931" name="Default Changelist" comment="" />
+    <list default="true" id="83c73dcb-8805-4be6-b334-b02270083931" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Exceptions/Abstractions/BaseException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Exceptions/ApiException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Exceptions/ApplicationException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Exceptions/BusinessException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Exceptions/ConsoleException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Exceptions/Contracts/LogExceptionContract.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Exceptions/Traits/WriteLogException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/log.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/testing/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel_ddd.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel_ddd.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TestingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TestingController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/Services/TestingService.php" beforeDir="false" afterPath="$PROJECT_DIR$/domain/Services/TestingService.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,6 +133,15 @@
       <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/vendor/prettus/l5-repository" />
       <path value="$PROJECT_DIR$/vendor/prettus/laravel-validation" />
+      <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php70" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/league/fractal" />
     </include_path>
   </component>
   <component name="ProjectId" id="1a71fPbOnR7rVBKwr4QYqHMXH5V" />
@@ -127,18 +154,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/domain/Abstractions" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Exceptions" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp72\htdocs\laravel_ddd\domain\Contracts\Repositories\Cores" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Exceptions" />
+      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Exceptions\Contracts" />
+      <recent name="C:\xampp72\htdocs\laravel_ddd\config" />
+      <recent name="C:\xampp72\htdocs\laravel_ddd\resources\views\testing" />
       <recent name="C:\xampp72\htdocs\laravel_ddd\domain\Abstractions" />
-      <recent name="C:\xampp72\htdocs\laravel_ddd\domain\Entities\Eloquents" />
-      <recent name="C:\xampp72\htdocs\laravel_ddd\domain\Repositories" />
-      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Http\Controllers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Exceptions\Abtractions" />
       <recent name="C:\xampp72\htdocs\laravel_ddd\domain\Contracts\Repositories\Cores" />
     </key>
   </component>
@@ -166,6 +194,15 @@
       <workItem from="1597137868191" duration="8000" />
       <workItem from="1597137904118" duration="1788000" />
       <workItem from="1597139721977" duration="1129000" />
+      <workItem from="1600924376514" duration="1822000" />
+      <workItem from="1600926683577" duration="878000" />
+      <workItem from="1600929142050" duration="1768000" />
+      <workItem from="1600931171980" duration="1749000" />
+      <workItem from="1600933092247" duration="1768000" />
+      <workItem from="1600937298311" duration="1792000" />
+      <workItem from="1600939137735" duration="1861000" />
+      <workItem from="1600941051203" duration="1310000" />
+      <workItem from="1600947333899" duration="259000" />
     </task>
     <servers />
   </component>
@@ -173,17 +210,21 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="504" y="244" key="NewPhpClassDialog" timestamp="1597139402754">
+    <state x="783" y="257" key="NewPhpClassDialog" timestamp="1600938181034">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="504" y="244" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1597139402754" />
-    <state x="496" y="254" key="com.intellij.ide.util.TipDialog" timestamp="1597139721483">
+    <state x="783" y="257" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1600938181034" />
+    <state x="496" y="254" key="com.intellij.ide.util.TipDialog" timestamp="1600947335299">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="496" y="254" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1597139721482" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1597140253965">
+    <state x="496" y="254" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1600947335299" />
+    <state x="496" y="162" width="607" height="536" key="find.popup" timestamp="1600932914991">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1597140253965" />
+    <state x="496" y="162" width="607" height="536" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1600932914991" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1600941645860">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1600941645860" />
   </component>
 </project>

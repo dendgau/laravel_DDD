@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ApiException;
 use Domain\Contracts\Services\TestingServiceContract;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,10 @@ class TestingController extends Controller
         /** @var $testService TestingServiceContract */
         $testService = $this->getAppService();
 
-        $users = $testService->getAllUser();
-        return $this->sendResp($users);
+        $data = [
+            'users' => $testService->getAllUser()
+        ];
+
+        return $this->sendResp('testing.index', $data);
     }
 }

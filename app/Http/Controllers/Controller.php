@@ -9,6 +9,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
+use PHPUnit\Util\Json;
 
 /**
  * Class Controller
@@ -40,10 +41,14 @@ class Controller extends BaseController
 
     /**
      * @param $data
-     * @return mixed
+     * @param $view
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function sendResp($data)
+    public function sendResp($view, $data)
     {
-        return JsonResponseCustom::create(true, $data, 'success', 200);
+        if (request()->is('api/*') || request()->wantsJson()) {
+            return JsonResponseCustom::create(true, $data, 'success', 200);
+        }
+        return view($view, $data);
     }
 }
