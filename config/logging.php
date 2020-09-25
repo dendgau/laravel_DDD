@@ -99,6 +99,11 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
-    ],
 
+        'custom' => [
+            'driver' => 'custom',
+            'path' => storage_path('logs/application'),
+            'via' => \Infrastructure\Utils\CustomLogger::class
+        ],
+    ],
 ];

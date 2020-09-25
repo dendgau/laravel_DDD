@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\ApiException;
 use Domain\Contracts\Services\TestingServiceContract;
 use Illuminate\Http\Request;
 
