@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Infrastructure\Utils\CustomDateTime;
-use Infrastructure\Utils\CustomLogger;
 
 class UtilityServiceProvider extends ServiceProvider
 {

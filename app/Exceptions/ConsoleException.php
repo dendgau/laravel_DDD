@@ -15,6 +15,6 @@ class ConsoleException extends CustomExceptionBase
      */
     public function getLogPath()
     {
-        return config('log.path.console');
+        return config('logging.path.console');
     }
 }

@@ -15,6 +15,6 @@ class ApiException extends CustomExceptionBase
      */
     public function getLogPath()
     {
-        return config('log.path.api');
+        return config('logging.path.api');
     }
 }

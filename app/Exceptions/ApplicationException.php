@@ -15,6 +15,6 @@ class ApplicationException extends CustomExceptionBase
      */
     public function getLogPath()
     {
-        return config('log.path.application');
+        return config('logging.path.application');
     }
 }

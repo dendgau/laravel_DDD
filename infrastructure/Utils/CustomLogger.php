@@ -2,10 +2,11 @@
 
 namespace Infrastructure\Utils;
 
-use Illuminate\Support\Arr;
+use Illuminate\Foundation\Application;
+use \Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Log;
 use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
+use Monolog\Logger as MonoLog;
 
 /**
  * Class CustomLogger
@@ -13,32 +14,20 @@ use Monolog\Logger;
  */
 class CustomLogger
 {
-    /** @var $monolog Logger */
-    protected $monolog;
+    /** @var $logger Logger */
+    protected $logger;
 
     /**
      * Create a custom Monolog instance
+     *
      * @param array $config
-     * @return Logger
+     * @return MonoLog
      */
     public function __invoke(array $config)
     {
-        $this->monolog = new Logger(env('APP_ENV'));
-        $this->setHandleLog($config['path']);
-        return $this->monolog;
-    }
-
-    public function __destruct()
-    {
-        $this->monolog->popHandler();
-    }
-
-    public function getLogInstance()
-    {
-        if (empty($this->logger)) {
-            $this->monolog = app('log');
-        }
-        return $this->monolog;
+        $monolog = new MonoLog(env('APP_ENV'));
+        $monolog->pushHandler(new StreamHandler($this->setPathLog($config['path'] ?? null)));
+        return $monolog;
     }
 
     /**
@@ -49,32 +38,49 @@ class CustomLogger
      */
     public function __call($method, $arguments)
     {
-        if (is_callable([$this->monolog, $method])) {
-            $this->monolog->{$method}(...$arguments);
+        try {
+            $this->logger->{$method}(...$arguments);
+        } catch (\Exception $ex) {
+            throw new \LogicException($ex->getMessage());
         }
-        throw new \LogicException('Can not call function by __call in CustomLogger');
+    }
+
+    /**
+     * @param null $path
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function initialize($path = null)
+    {
+        if (!$this->logger) {
+            $appLog = app()->make('log');
+            $channel = $appLog->getChannels();
+            $this->logger = $appLog->channel(!empty($channel) ? $channel : null);
+        }
+        $this->setHandleLog($path);
     }
 
     /**
      * @param $path
      */
-    public function setHandleLog($path)
+    protected function setHandleLog($path)
     {
-        $this->monolog->pushHandler(new StreamHandler($this->setPathLog($path)));
+        $this->logger
+            ->getLogger() // Get monolog instance
+            ->pushHandler(new StreamHandler($this->setPathLog($path)));
     }
 
     /**
      * @param $path
      * @return string
      */
-    public function setPathLog($path)
+    protected function setPathLog($path)
     {
         /** @var $utilDate CustomDateTime */
         $utilDate = app(CustomDateTime::class);
 
         $today = $utilDate->now();
         $path = implode('/', [
-            $path,
+            $path ?? config('logging.path.application'),
             $today->year,
             $today->month,
             $today->day . '.log',

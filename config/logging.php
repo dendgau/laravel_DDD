@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['daily'],
             'ignore_exceptions' => false,
         ],
 
@@ -105,5 +105,19 @@ return [
             'path' => storage_path('logs/application'),
             'via' => \Infrastructure\Utils\CustomLogger::class
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom log path for application
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'path' => [
+        'api' => storage_path('logs/api'),
+        'application' => storage_path('logs/application'),
+        'business' => storage_path('logs/business'),
+        'validation' => storage_path('logs/validation')
     ],
 ];

@@ -15,6 +15,6 @@ class BusinessException extends CustomExceptionBase
      */
     public function getLogPath()
     {
-        return config('log.path.business');
+        return config('logging.path.business');
     }
 }
