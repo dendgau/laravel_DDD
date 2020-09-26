@@ -2,9 +2,7 @@
 
 namespace Infrastructure\Utils;
 
-use Illuminate\Foundation\Application;
 use \Illuminate\Log\Logger;
-use Illuminate\Support\Facades\Log;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger as MonoLog;
 
@@ -49,7 +47,7 @@ class CustomLogger
     public function __call($method, $arguments)
     {
         if (!in_array($method, $this->levels)) {
-            return;
+            throw new \LogicException('Can not find method to write log');
         }
 
         try {
@@ -70,6 +68,7 @@ class CustomLogger
             $logger = app()->make('log');
             $channel = $logger->getChannels();
             $this->logger = $logger->channel(!empty($channel) ? $channel : null);
+
         }
         $this->clearHandleLog();
         $this->setHandleLog($path);
@@ -80,10 +79,21 @@ class CustomLogger
      */
     protected function clearHandleLog()
     {
+        // Close stream file
+        $this->logger
+            ->getLogger()
+            ->close();
+
+        // Remove handle and keep default handle
+        $dPath = $this->setPathLog(null);
         foreach ($this->logger->getLogger()->getHandlers() as $item) {
-            $this->logger
-                ->getLogger()
-                ->popHandler();
+            if ($item->getUrl() != $dPath) {
+                $this->logger
+                    ->getLogger()
+                    ->popHandler();
+            }
+
+
         }
     }
 
@@ -93,10 +103,24 @@ class CustomLogger
      */
     protected function setHandleLog($path)
     {
+        $cPath = $this->setPathLog($path); // For custom
+        $dPath = $this->setPathLog(null); // For default
+
+        // Check default handle is exited
+        $exited = false;
+        foreach ($this->logger->getLogger()->getHandlers() as $item) {
+            if ($cPath == $dPath) {
+                $exited = true;
+                break;
+            }
+        }
+
         // Add new stream handle
-        $this->logger
-            ->getLogger() // Get monolog instance
-            ->pushHandler(new StreamHandler($this->setPathLog($path)));
+        if (!$exited) {
+            $this->logger
+                ->getLogger() // Get monolog instance
+                ->pushHandler(new StreamHandler($cPath));
+        }
     }
 
     /**
@@ -110,7 +134,7 @@ class CustomLogger
 
         $today = $utilDate->now();
         $path = implode('/', [
-            $path ?? config('logging.path.application'),
+            $path ?? config('logging.channels.custom.path'),
             $today->year,
             $today->month,
             $today->day . '.log',

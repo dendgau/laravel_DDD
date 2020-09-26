@@ -54,7 +54,6 @@ class TestingController extends Controller
             $customLog->initialize($path);
             $customLog->debug('Test log ' . $key, $context);
         }
-
         Log::debug('Test log app is no double');
     }
 }
