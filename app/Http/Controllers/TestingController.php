@@ -38,6 +38,10 @@ class TestingController extends Controller
         return $this->sendResp('testing.index', $data);
     }
 
+    /**
+     * @param Request $request
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function log(Request $request)
     {
         /** @var $testService TestingServiceContract */
