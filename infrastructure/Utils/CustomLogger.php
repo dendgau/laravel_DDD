@@ -92,8 +92,6 @@ class CustomLogger
                     ->getLogger()
                     ->popHandler();
             }
-
-
         }
     }
 
