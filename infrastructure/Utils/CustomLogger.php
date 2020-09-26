@@ -17,6 +17,16 @@ class CustomLogger
     /** @var $logger Logger */
     protected $logger;
 
+    /** @var $levels array */
+    protected $levels = [
+        'log',
+        'debug',
+        'info',
+        'notice',
+        'warning',
+        'error'
+    ];
+
     /**
      * Create a custom Monolog instance
      *
@@ -38,8 +48,13 @@ class CustomLogger
      */
     public function __call($method, $arguments)
     {
+        if (!in_array($method, $this->levels)) {
+            return;
+        }
+
         try {
             $this->logger->{$method}(...$arguments);
+            $this->clearHandleLog();
         } catch (\Exception $ex) {
             throw new \LogicException($ex->getMessage());
         }
@@ -52,18 +67,33 @@ class CustomLogger
     public function initialize($path = null)
     {
         if (!$this->logger) {
-            $appLog = app()->make('log');
-            $channel = $appLog->getChannels();
-            $this->logger = $appLog->channel(!empty($channel) ? $channel : null);
+            $logger = app()->make('log');
+            $channel = $logger->getChannels();
+            $this->logger = $logger->channel(!empty($channel) ? $channel : null);
         }
+        $this->clearHandleLog();
         $this->setHandleLog($path);
     }
 
     /**
+     * Clear stream handle
+     */
+    protected function clearHandleLog()
+    {
+        foreach ($this->logger->getLogger()->getHandlers() as $item) {
+            $this->logger
+                ->getLogger()
+                ->popHandler();
+        }
+    }
+
+    /**
+     * Add new stream handle
      * @param $path
      */
     protected function setHandleLog($path)
     {
+        // Add new stream handle
         $this->logger
             ->getLogger() // Get monolog instance
             ->pushHandler(new StreamHandler($this->setPathLog($path)));

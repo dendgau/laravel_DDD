@@ -31,18 +31,30 @@ class TestingController extends Controller
         /** @var $testService TestingServiceContract */
         $testService = $this->getAppService();
 
-        /** @var $customLog CustomLogger */
-        $customLog = app(CustomLogger::class);
-        $customLog->initialize(config('logging.path.application'));
-
         $data = [
             'users' => $testService->getAllUser()
         ];
 
-        // dd(Log::getFacadeRoot()->getChannels(), app()->make('log')->getChannels());
-        Log::info('Test log application');
-        $customLog->info('Test log business');
-
         return $this->sendResp('testing.index', $data);
+    }
+
+    public function log(Request $request)
+    {
+        /** @var $testService TestingServiceContract */
+        $testService = $this->getAppService();
+
+        /** @var $customLog CustomLogger */
+        $customLog = app(CustomLogger::class);
+
+        $context = [
+            'users' => $testService->getAllUser()->toArray()
+        ];
+
+        foreach (config('logging.path') as $key => $path) {
+            $customLog->initialize($path);
+            $customLog->debug('Test log ' . $key, $context);
+        }
+
+        Log::debug('Test log app is no double');
     }
 }

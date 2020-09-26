@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('/test/index', 'TestingController@index')->name('index_test');
+Route::get('/test/log', 'TestingController@log')->name('log_test');
