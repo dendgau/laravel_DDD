@@ -71,7 +71,7 @@ class CustomLogger
 
         }
         $this->clearHandleLog();
-        $this->setHandleLog($path);
+        $this->setupHandleLog($path);
     }
 
     /**
@@ -99,7 +99,7 @@ class CustomLogger
      * Add new stream handle
      * @param $path
      */
-    protected function setHandleLog($path)
+    protected function setupHandleLog($path)
     {
         $cPath = $this->setPathLog($path); // For custom
         $dPath = $this->setPathLog(null); // For default
