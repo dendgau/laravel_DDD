@@ -9,6 +9,7 @@ use App\User;
 
 /**
  * Class AuthController
+ * @author https://www.positronx.io/laravel-jwt-authentication-tutorial-user-login-signup-api/
  * @package App\Http\Controllers
  */
 class APIAuthController extends Controller
