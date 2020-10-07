@@ -9,7 +9,8 @@ use App\User;
 
 /**
  * Class AuthController
- * @author https://www.positronx.io/laravel-jwt-authentication-tutorial-user-login-signup-api/
+ * @copyright https://www.positronx.io/laravel-jwt-authentication-tutorial-user-login-signup-api/
+ * @inheritDoc https://jwt-auth.readthedocs.io/en/develop/auth-guard/
  * @package App\Http\Controllers
  */
 class APIAuthController extends Controller
