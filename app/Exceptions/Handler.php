@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Infrastructure\Utils\CustomLogger;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,6 +38,18 @@ class Handler extends ExceptionHandler
     public function report(Throwable $exception)
     {
         parent::report($exception);
+
+        $logPath = '';
+        if ($exception instanceof ApiException) {
+            $exception->getLogPath();
+        }
+
+        if (!empty($logPath)) {
+            /** @var $customLog CustomLogger */
+            $customLog = app(CustomLogger::class);
+            $customLog->initialize($logPath);
+            $customLog->error($exception->getMessage());
+        }
     }
 
     /**
@@ -50,6 +63,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof ApiException) {
+            return response()->json(['error' => $exception->getMessage()], 500);
+        }
         return parent::render($request, $exception);
     }
 }
