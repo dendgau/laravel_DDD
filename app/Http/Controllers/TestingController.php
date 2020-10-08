@@ -35,7 +35,7 @@ class TestingController extends Controller
             'users' => $testService->getAllUser()
         ];
 
-        return $this->sendResp('testing.index', $data);
+        return $this->respView('testing.index', $data);
     }
 
     /**

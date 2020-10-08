@@ -44,7 +44,7 @@ class Controller extends BaseController
      * @param $view
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
-    public function sendResp($view, $data)
+    public function respView($view, $data)
     {
         if (request()->is('api/*') || request()->wantsJson()) {
             return JsonResponseCustom::create(true, $data, 'success');
