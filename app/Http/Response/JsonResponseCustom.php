@@ -18,13 +18,13 @@ class JsonResponseCustom
      * @param int $httpCode
      * @return mixed
      */
-    public static function create($success, $data, $message, $code, $httpCode = 200)
+    public static function create($success, $data, $message, $httpCode = 200)
     {
         $response = [
             'success' => $success,
             'data' => $data,
             'message' => $message,
-            'code' => $code
+            'code' => $httpCode
         ];
         $header = [$httpCode => $response['message']];
         return Response::create($response, $httpCode, $header);

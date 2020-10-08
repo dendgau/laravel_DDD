@@ -47,7 +47,7 @@ class Controller extends BaseController
     public function sendResp($view, $data)
     {
         if (request()->is('api/*') || request()->wantsJson()) {
-            return JsonResponseCustom::create(true, $data, 'success', 200);
+            return JsonResponseCustom::create(true, $data, 'success');
         }
         return view($view, $data);
     }
