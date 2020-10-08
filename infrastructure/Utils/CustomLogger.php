@@ -52,7 +52,6 @@ class CustomLogger
 
         try {
             $this->logger->{$method}(...$arguments);
-            $this->clearHandleLog();
         } catch (\Exception $ex) {
             throw new \LogicException($ex->getMessage());
         }
@@ -60,9 +59,10 @@ class CustomLogger
 
     /**
      * @param null $path
+     * @param bool $keepPre
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function initialize($path = null)
+    public function initialize($path = null, $keepPre = false)
     {
         if (!$this->logger) {
             $logger = app()->make('log');
@@ -70,8 +70,19 @@ class CustomLogger
             $this->logger = $logger->channel(!empty($channel) ? $channel : null);
 
         }
-        $this->clearHandleLog();
+
+        if (!$keepPre) {
+            $this->clearHandleLog();
+        }
         $this->setupHandleLog($path);
+    }
+
+    /**
+     * Uninitialized handle stream
+     */
+    public function uninitialized()
+    {
+        $this->clearHandleLog();
     }
 
     /**

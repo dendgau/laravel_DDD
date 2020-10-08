@@ -57,6 +57,7 @@ class TestingController extends Controller
         foreach (config('logging.path') as $key => $path) {
             $customLog->initialize($path);
             $customLog->debug('Test log ' . $key, $context);
+            $customLog->uninitialized();
         }
         Log::debug('Test log app is no double');
     }
