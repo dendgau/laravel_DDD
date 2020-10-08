@@ -72,11 +72,9 @@ class APIAuthController extends Controller
             ['password' => bcrypt($request->password)]
         ));
 
-        return $this->respApi(
-            ['user' => $user],
-            'User successfully registered',
-            201
-        );
+        return $this->respApi([
+            'user' => $user
+        ]);
     }
 
 
