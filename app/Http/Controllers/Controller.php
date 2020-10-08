@@ -42,8 +42,6 @@ class Controller extends BaseController
     /**
      * @param $view
      * @param $data
-     * @param string $message
-     * @param int $code
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function sendResp($view, $data)
