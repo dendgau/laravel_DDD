@@ -40,15 +40,38 @@ class Controller extends BaseController
     }
 
     /**
-     * @param $data
      * @param $view
+     * @param $data
+     * @param string $message
+     * @param int $code
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
      */
     public function sendResp($view, $data)
     {
-        if (request()->is('api/*') || request()->wantsJson()) {
-            return JsonResponseCustom::create(true, $data, 'success', 200);
+        if (request()->wantsJson()) {
+            return JsonResponseCustom::create(true, $data, '', 200);
         }
         return view($view, $data);
+    }
+
+    /**
+     * @param $data
+     * @param string $message
+     * @param int $code
+     * @return mixed
+     */
+    public function respApi($data = [], $message = '', $code = 200)
+    {
+        return JsonResponseCustom::create(true, $data, $message, $code);
+    }
+
+    /**
+     * @param string $message
+     * @param int $code
+     * @return mixed
+     */
+    public function respApiNoData($message = '', $code = 200)
+    {
+        return $this->respApi([], $message, $code);
     }
 }

@@ -39,14 +39,14 @@ class APIAuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            return $this->respApiNoData($validator->errors(), 422);
         }
 
         if (!$token = auth()->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return $this->respApiNoData('Unauthorized', 401);
         }
 
-        return $this->createNewToken($token);
+        return $this->respApi($this->createNewToken($token));
     }
 
     /**
@@ -64,7 +64,7 @@ class APIAuthController extends Controller
         ]);
 
         if ($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+            return $this->respApiNoData($validator->errors(), 400);
         }
 
         $user = User::create(array_merge(
@@ -72,10 +72,11 @@ class APIAuthController extends Controller
             ['password' => bcrypt($request->password)]
         ));
 
-        return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user
-        ], 201);
+        return $this->respApi(
+            ['user' => $user],
+            'User successfully registered',
+            201
+        );
     }
 
 
@@ -87,7 +88,7 @@ class APIAuthController extends Controller
     public function logout()
     {
         auth()->logout();
-        return response()->json(['message' => 'User successfully signed out']);
+        return $this->respApiNoData('User successfully signed out');
     }
 
     /**
@@ -107,7 +108,7 @@ class APIAuthController extends Controller
      */
     public function profile()
     {
-        return response()->json(auth()->user());
+        return $this->respApi(['user' => auth()->user()]);
     }
 
     /**
@@ -119,12 +120,12 @@ class APIAuthController extends Controller
      */
     protected function createNewToken($token)
     {
-        return response()->json([
+        return [
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user()
-        ]);
+        ];
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Http\Response\JsonResponseCustom;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Infrastructure\Utils\CustomLogger;
 use Throwable;
@@ -49,6 +50,7 @@ class Handler extends ExceptionHandler
             $customLog = app(CustomLogger::class);
             $customLog->initialize($logPath);
             $customLog->error($exception->getMessage());
+            $customLog->initialize();
         }
     }
 
@@ -64,7 +66,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof ApiException) {
-            return response()->json(['error' => $exception->getMessage()], 500);
+            return JsonResponseCustom::create(true, [], $exception->getMessage(), 500);
         }
         return parent::render($request, $exception);
     }
