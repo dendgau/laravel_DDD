@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83c73dcb-8805-4be6-b334-b02270083931" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TestingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TestingController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/Utils/CustomLogger.php" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/Utils/CustomLogger.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,6 +223,7 @@
       <workItem from="1601097260217" duration="22149000" />
       <workItem from="1602058838771" duration="492000" />
       <workItem from="1602080659659" duration="11298000" />
+      <workItem from="1602141020905" duration="2000" />
     </task>
     <servers />
   </component>
