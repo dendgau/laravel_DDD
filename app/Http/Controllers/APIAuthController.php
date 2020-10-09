@@ -55,9 +55,7 @@ class APIAuthController extends Controller
             ['password' => bcrypt($request->get('password'))]
         ));
 
-        return $this->respApi([
-            'user' => $user
-        ]);
+        return $this->respApi($user);
     }
 
 
@@ -89,15 +87,15 @@ class APIAuthController extends Controller
      */
     public function profile()
     {
-        return $this->respApi(['user' => auth()->user()]);
+        return $this->respApi(auth()->user());
     }
 
     /**
      * Get the token array structure.
      *
-     * @param  string $token
+     * @param string $token
      *
-     * @return JsonResponse
+     * @return array
      */
     protected function createNewToken($token)
     {

@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Traits\WriteLogException;
 use \Illuminate\Validation\ValidationException as BaseValidationException;
 use App\Exceptions\Contracts\LogExceptionContract;
 
@@ -11,6 +12,8 @@ use App\Exceptions\Contracts\LogExceptionContract;
  */
 class ValidationException extends BaseValidationException implements LogExceptionContract
 {
+    use WriteLogException;
+
     /**
      * @return string
      */
@@ -19,14 +22,8 @@ class ValidationException extends BaseValidationException implements LogExceptio
         return config('logging.path.validation');
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getLogMessage()
+    public function getData()
     {
-        return implode(' - ', [
-            $this->getMessage(),
-            json_encode($this->errors())
-        ]);
+        return $this->errors();
     }
 }

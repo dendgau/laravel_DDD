@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Exceptions\ValidationException;
 use App\Http\Requests\Abstractions\BaseFormRequest;
-use Illuminate\Contracts\Validation\Validator;
 
 /**
  * Class LoginFormRequest
@@ -21,7 +19,7 @@ class LoginFormRequest extends BaseFormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required|string|min:10',
+            'password' => 'required|string|min:4',
         ];
     }
 }

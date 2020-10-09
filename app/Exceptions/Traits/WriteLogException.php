@@ -2,6 +2,8 @@
 
 namespace App\Exceptions\Traits;
 
+use Illuminate\Http\Request;
+
 /**
  * Trait WriteLogException
  * @package App\Exceptions\Traits
@@ -13,14 +15,13 @@ trait WriteLogException
      */
     public function getLogMessage()
     {
-        /** @var $request */
+        /** @var $request Request */
         $request = app('request');
 
         return implode(' - ', [
-            $this->getCode(),
-            $request->getMethod() . ' ' . $request->fullUrl(),
-            $this->getMessage(),
-            json_encode($this->getData())
+            $request->ip(),
+            $request->getMethod() . ' ' . $request->getPathInfo(),
+            $this->getMessage()
         ]);
     }
 

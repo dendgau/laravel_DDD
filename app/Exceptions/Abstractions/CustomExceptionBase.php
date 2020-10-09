@@ -32,8 +32,11 @@ abstract class CustomExceptionBase extends Exception implements LogExceptionCont
     /**
      * @return array
      */
-    protected function getData()
+    public function getData()
     {
-        return $this->data;
+        return [
+            'file' => $this->getFile() . ':' . $this->getLine(),
+            'data' => $this->data
+        ];
     }
 }

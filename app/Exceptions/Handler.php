@@ -47,6 +47,7 @@ class Handler extends ExceptionHandler
         // Setup log path
         $logPath = null;
         $message = null;
+        $data = [];
         if ($exception instanceof ApiException ||
             $exception instanceof ValidationException ||
             $exception instanceof BusinessException ||
@@ -55,6 +56,7 @@ class Handler extends ExceptionHandler
         ) {
             $logPath = $exception->getLogPath();
             $message = $exception->getLogMessage();
+            $data = $exception->getData();
         }
 
         /** @var $customLog CustomLogger */
@@ -62,9 +64,8 @@ class Handler extends ExceptionHandler
 
         if ($logPath) {
             $customLog->initialize($logPath);
-            $customLog->error($message ?? $exception->getMessage());
+            $customLog->error($message ?? $exception->getMessage(), $data);
         }
-
         $customLog->uninitialized();
     }
 
