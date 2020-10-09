@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83c73dcb-8805-4be6-b334-b02270083931" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Exceptions/ValidationException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Abstractions/BaseFormRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/RegisterFormRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TestingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TestingController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Abstractions/CustomExceptionBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Abstractions/CustomExceptionBase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Contracts/LogExceptionContract.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Contracts/LogExceptionContract.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Exceptions/Traits/WriteLogException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Traits/WriteLogException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/APIAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/APIAuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/Utils/CustomLogger.php" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/Utils/CustomLogger.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,21 +167,21 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Providers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Requests/Abstractions" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Providers" />
-      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Exceptions" />
-      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Exceptions\Contracts" />
-      <recent name="C:\xampp72\htdocs\laravel_ddd\config" />
-      <recent name="C:\xampp72\htdocs\laravel_ddd\resources\views\testing" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp72\htdocs\laravel_ddd\app\Exceptions\Abtractions" />
       <recent name="C:\xampp72\htdocs\laravel_ddd\domain\Contracts\Repositories\Cores" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Http\Requests\Abstractions" />
+      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Exceptions" />
+      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Exceptions\Traits" />
+      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Http\Requests" />
+      <recent name="C:\xampp72\htdocs\laravel_ddd\app\Providers" />
     </key>
   </component>
   <component name="RunManager">
@@ -220,6 +228,7 @@
       <workItem from="1602058838771" duration="492000" />
       <workItem from="1602080659659" duration="11298000" />
       <workItem from="1602141020905" duration="3039000" />
+      <workItem from="1602227596644" duration="8389000" />
     </task>
     <servers />
   </component>
@@ -231,10 +240,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="392" y="88" key="#Notifications/0.0.1600.860@0.0.1600.860" timestamp="1600960046523" />
-    <state x="515" y="-856" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602089938976">
+    <state x="515" y="-856" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602234848554">
       <screen x="-121" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="515" y="-856" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602089938976" />
+    <state x="515" y="-856" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602234848554" />
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1601112223026" />
     <state x="783" y="257" key="NewPhpClassDialog" timestamp="1601103853165">
       <screen x="0" y="0" width="1600" height="860" />
@@ -244,29 +253,33 @@
       <screen x="-121" y="-1080" width="1920" height="1040" />
     </state>
     <state x="340" y="-918" key="SettingsEditor/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602083183955" />
-    <state x="474" y="-773" key="com.intellij.ide.util.TipDialog" timestamp="1602080678179">
+    <state x="474" y="-773" key="com.intellij.ide.util.TipDialog" timestamp="1602227599022">
       <screen x="-121" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="474" y="-773" key="com.intellij.ide.util.TipDialog/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602080678179" />
+    <state x="474" y="-773" key="com.intellij.ide.util.TipDialog/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602227599022" />
     <state x="496" y="254" key="com.intellij.ide.util.TipDialog/0.0.1600.860/-121.-1080.1920.1040@0.0.1600.860" timestamp="1602058846187" />
     <state x="496" y="254" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1601097259586" />
     <state x="441" y="45" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601139797878">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="441" y="45" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1600.860@0.0.1600.860" timestamp="1601139797878" />
-    <state x="474" y="-884" width="729" height="649" key="find.popup" timestamp="1602058959533">
+    <state x="-29" y="-988" width="1736" height="856" key="dock-window-1" timestamp="1602231722551">
       <screen x="-121" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="474" y="-884" width="729" height="649" key="find.popup/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602058959533" />
+    <state x="-29" y="-988" width="1736" height="856" key="dock-window-1/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602231722551" />
+    <state x="474" y="-884" width="729" height="649" key="find.popup" timestamp="1602229974449">
+      <screen x="-121" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="474" y="-884" width="729" height="649" key="find.popup/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602229974449" />
     <state x="496" y="162" width="607" height="536" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1601134413444" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1600967429207">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1600967429207" />
-    <state x="767" y="-896" width="807" height="820" key="search.everywhere.popup" timestamp="1602144447600">
+    <state x="767" y="-896" width="807" height="820" key="search.everywhere.popup" timestamp="1602236125094">
       <screen x="-121" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="767" y="-896" width="807" height="820" key="search.everywhere.popup/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602144447600" />
+    <state x="767" y="-896" width="807" height="820" key="search.everywhere.popup/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602236125094" />
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1601141127196" />
   </component>
 </project>

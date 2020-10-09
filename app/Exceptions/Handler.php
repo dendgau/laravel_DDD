@@ -2,9 +2,12 @@
 
 namespace App\Exceptions;
 
-use App\Http\Response\JsonResponseCustom;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use App\Http\Response\JsonResponseCustom;
 use Infrastructure\Utils\CustomLogger;
+use Exception;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -31,41 +34,52 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Throwable  $exception
+     * @param Throwable $exception
      * @return void
      *
-     * @throws \Exception
+     * @throws Exception
+     * @throws Throwable
      */
     public function report(Throwable $exception)
     {
         parent::report($exception);
 
-        $logPath = '';
-        if ($exception instanceof ApiException) {
-            $exception->getLogPath();
+        // Setup log path
+        $logPath = null;
+        $message = null;
+        if ($exception instanceof ApiException ||
+            $exception instanceof ValidationException ||
+            $exception instanceof BusinessException ||
+            $exception instanceof ConsoleException ||
+            $exception instanceof ApplicationException
+        ) {
+            $logPath = $exception->getLogPath();
+            $message = $exception->getLogMessage();
         }
 
-        if (!empty($logPath)) {
-            /** @var $customLog CustomLogger */
-            $customLog = app(CustomLogger::class);
+        /** @var $customLog CustomLogger */
+        $customLog = app(CustomLogger::class);
+
+        if ($logPath) {
             $customLog->initialize($logPath);
-            $customLog->error($exception->getMessage());
-            $customLog->initialize();
+            $customLog->error($message ?? $exception->getMessage());
         }
+
+        $customLog->uninitialized();
     }
 
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request  $request
+     * @param Throwable $exception
+     * @return Response
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof ApiException) {
+        if ($request->is('api/*') || $request->wantsJson()) {
             return JsonResponseCustom::create(true, [], $exception->getMessage(), 500);
         }
         return parent::render($request, $exception);

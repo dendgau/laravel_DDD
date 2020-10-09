@@ -10,13 +10,14 @@ class Authenticate extends Middleware
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return string|null
+     * @throws ApiException
      */
     protected function redirectTo($request)
     {
-        if ($request->expectsJson() || $request->is('api/*')) {
-            throw new ApiException('User have not logged yet.');
+        if ($request->is('api/*') || $request->wantsJson()) {
+            throw new ApiException('User have not logged yet');
         }
         return route('login');
     }

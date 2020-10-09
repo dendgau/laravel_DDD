@@ -23,4 +23,6 @@ trait WriteLogException
             json_encode($this->getData())
         ]);
     }
+
+    abstract public function getLogPath();
 }

@@ -12,4 +12,9 @@ interface LogExceptionContract
      * @return string
      */
     public function getLogMessage();
+
+    /**
+     * @return string
+     */
+    public function getLogPath();
 }

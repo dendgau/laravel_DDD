@@ -36,6 +36,4 @@ abstract class CustomExceptionBase extends Exception implements LogExceptionCont
     {
         return $this->data;
     }
-
-    abstract public function getLogPath();
 }

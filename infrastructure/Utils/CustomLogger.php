@@ -90,6 +90,10 @@ class CustomLogger
      */
     protected function clearHandleLog()
     {
+        if (!$this->logger) {
+            return;
+        }
+
         // Close stream file
         $this->logger
             ->getLogger()
