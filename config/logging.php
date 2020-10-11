@@ -117,6 +117,7 @@ return [
     'path' => [
         'api' => storage_path('logs/api'),
         'business' => storage_path('logs/business'),
-        'validation' => storage_path('logs/validation')
+        'validation' => storage_path('logs/validation'),
+        'console' => storage_path('logs/console')
     ],
 ];

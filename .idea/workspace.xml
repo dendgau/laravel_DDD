@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="83c73dcb-8805-4be6-b334-b02270083931" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Abstractions/CustomExceptionBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Abstractions/CustomExceptionBase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Traits/WriteLogException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Traits/WriteLogException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/ValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/ValidationException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/APIAuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/APIAuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/LoginFormRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/LoginFormRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/logging.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/logging.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,6 +221,7 @@
       <workItem from="1602080659659" duration="11298000" />
       <workItem from="1602141020905" duration="3039000" />
       <workItem from="1602227596644" duration="13538000" />
+      <workItem from="1602407141106" duration="1587000" />
     </task>
     <servers />
   </component>
@@ -278,10 +273,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1600967429207" />
-    <state x="767" y="-896" width="807" height="820" key="search.everywhere.popup" timestamp="1602250655354">
+    <state x="767" y="-896" width="807" height="820" key="search.everywhere.popup" timestamp="1602408710075">
       <screen x="-121" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="767" y="-896" width="807" height="820" key="search.everywhere.popup/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602250655354" />
+    <state x="767" y="-896" width="807" height="820" key="search.everywhere.popup/0.0.1600.860/-121.-1080.1920.1040@-121.-1080.1920.1040" timestamp="1602408710075" />
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1601141127196" />
   </component>
 </project>
