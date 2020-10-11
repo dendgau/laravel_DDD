@@ -34,3 +34,44 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
     SetEnv "APP_ENV" "local"
 </VirtualHost>
 ```
+
+### Migration
+```
+php artisan migrate
+```
+
+### Seeding
+```
+php artisan db:seed
+```
+
+### Config Supervisor
+Install supervisor
+```
+sudo apt-get install supervisor
+```
+
+Copy config to "/etc/supervisor/conf.d" supervisor for listen job
+```
+[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /home/forge/app.com/artisan queue:work sqs --sleep=3 --tries=3 --max-time=3600
+autostart=true
+autorestart=true
+user=forge
+numprocs=8
+redirect_stderr=true
+stdout_logfile=/home/forge/app.com/worker.log
+stopwaitsecs=3600
+```
+
+Reload and start config
+```
+sudo supervisorctl reread
+```
+```
+sudo supervisorctl update
+```
+```
+sudo supervisorctl start laravel-worker:*
+```
