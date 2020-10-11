@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Domain\Contracts\Services\TestingServiceContract;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Infrastructure\Utils\CustomLogger;
@@ -40,7 +41,7 @@ class TestingController extends Controller
 
     /**
      * @param Request $request
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public function log(Request $request)
     {

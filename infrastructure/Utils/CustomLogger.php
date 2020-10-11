@@ -2,6 +2,7 @@
 
 namespace Infrastructure\Utils;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use \Illuminate\Log\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger as MonoLog;
@@ -60,7 +61,7 @@ class CustomLogger
     /**
      * @param null $path
      * @param bool $keepPre
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public function initialize($path = null, $keepPre = false)
     {
