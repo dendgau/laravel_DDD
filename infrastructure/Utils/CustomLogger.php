@@ -68,7 +68,6 @@ class CustomLogger
             $logger = app()->make('log');
             $channel = $logger->getChannels();
             $this->logger = $logger->channel(!empty($channel) ? $channel : null);
-
         }
 
         if (!$keepPre) {
