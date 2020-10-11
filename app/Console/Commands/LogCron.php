@@ -18,7 +18,9 @@ class LogCron extends Command
      *
      * @var string
      */
-    protected $signature = 'log:cron';
+    protected $signature = 'log:cron
+                            {type : The type of log which you want to write}
+                            {--time= : The time which you want to write again}';
 
     /**
      * The console command description.
@@ -47,11 +49,19 @@ class LogCron extends Command
     {
         /** @var $customLog CustomLogger */
         $customLog = app(CustomLogger::class);
-        $customLog->initialize(config('logging.path.console'));
 
+        // Get argument
+        $type = $this->argument('type');
+        $time = $this->option('time');
+
+        // Handle write log here
+        $customLog->initialize(config("logging.path.{$type}"));
         $customLog->info('Start run cron job');
-        // TODO: Do what you have to do with cron job
+        for ($i = 1; $i <= $time; $i++) {
+            $customLog->info('Test log ' . $i);
+        }
         $customLog->info('End run cron job');
+        $customLog->uninitialized();
 
         return 0;
     }

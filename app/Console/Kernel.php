@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('log:cron')->everyMinute();
+        $schedule->command('log:cron console --time=3')->everyMinute();
     }
 
     /**
