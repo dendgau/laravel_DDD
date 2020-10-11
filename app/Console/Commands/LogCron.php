@@ -60,8 +60,13 @@ class LogCron extends Command
         $customLog->info('Start run cron job');
 
         // For test job and queue
+        $queue = 0;
         for ($i = 1; $i <= $time; $i++) {
-            LogJob::dispatch($type, $i)->onQueue('LogQueue');
+            $queue++;
+            LogJob::dispatch($type, $i)
+                ->onQueue('LogQueue' . $queue);
+            if ($queue >= 3)
+                $queue = 0;
         }
 
         $customLog->info('End run cron job');
