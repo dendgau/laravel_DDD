@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('log:cron')->hourly();
+        $schedule->command('log:cron')->everyMinute();
     }
 
     /**
