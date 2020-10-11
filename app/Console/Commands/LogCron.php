@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\LogJob;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Infrastructure\Utils\CustomLogger;
@@ -50,16 +51,19 @@ class LogCron extends Command
         /** @var $customLog CustomLogger */
         $customLog = app(CustomLogger::class);
 
-        // Get argument
+        // Get argument and option
         $type = $this->argument('type');
         $time = $this->option('time');
 
         // Handle write log here
         $customLog->initialize(config("logging.path.{$type}"));
         $customLog->info('Start run cron job');
+
+        // For test job and queue
         for ($i = 1; $i <= $time; $i++) {
-            $customLog->info('Test log ' . $i);
+            LogJob::dispatch($type, $i)->onQueue('LogQueue');
         }
+
         $customLog->info('End run cron job');
         $customLog->uninitialized();
 
