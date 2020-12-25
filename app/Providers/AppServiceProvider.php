@@ -20,6 +20,18 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Repositories\UserRepository::class,
             true
         );
+        
+        $this->app->bind(
+            \Domain\Contracts\Repositories\BlogRepositoryContract::class,
+            \Domain\Repositories\BlogRepository::class,
+            true
+        );
+        
+        $this->app->bind(
+            \Domain\Contracts\Repositories\CommentRepositoryContract::class,
+            \Domain\Repositories\CommentRepository::class,
+            true
+        );
 
         // Bind Service via interface
         $this->app->bind(

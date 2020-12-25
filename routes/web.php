@@ -19,3 +19,5 @@ Route::get('/', function () {
 
 Route::get('/test/index', 'TestingController@index')->name('index_test');
 Route::get('/test/log', 'TestingController@log')->name('log_test');
+Route::get('/test/createBlog', 'TestingController@createBlog')->name('create_blog');
+Route::get('/test/getBlog', 'TestingController@getBlog')->name('get_blog');

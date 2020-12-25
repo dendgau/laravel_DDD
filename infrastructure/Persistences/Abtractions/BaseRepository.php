@@ -5,6 +5,7 @@ namespace Infrastructure\Persistences\Abstractions;
 use Infrastructure\Persistences\Contracts\AdvanceRepositoryContract;
 use Infrastructure\Persistences\Contracts\BaseRepositoryContract;
 use Prettus\Repository\Eloquent\BaseRepository as AbstractionBaseRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class BaseRepository
