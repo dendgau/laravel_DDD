@@ -6,6 +6,8 @@ use App\Jobs\LogJob;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Infrastructure\Utils\CustomLogger;
+use App\Exceptions\ConsoleException;
+use Exception;
 
 /**
  * Class LogCron
@@ -60,13 +62,20 @@ class LogCron extends Command
         $customLog->info('Start run cron job');
 
         // For test job and queue
+        if ($type == 'error') {
+            $this->failed(new ConsoleException('Test ting exception case for command'));
+        }
+            
         $queue = 0;
         for ($i = 1; $i <= $time; $i++) {
             $queue++;
             LogJob::dispatch($type, $i)
                 ->onQueue('LogQueue' . $queue);
-            if ($queue >= 3)
+            
+            // Reset count
+            if ($queue >= 3) {
                 $queue = 0;
+            }
         }
 
         $customLog->info('End run cron job');
@@ -78,11 +87,18 @@ class LogCron extends Command
     /**
      * Handle a job failure.
      *
-     * @param Throwable $exception
+     * @param Exception $exception
      * @return void
      */
-    public function failed(Throwable $exception)
+    public function failed(Exception $exception)
     {
         // Send user notification of failure, etc...
+        
+        /** @var $customLog CustomLogger */
+        $customLog = app(CustomLogger::class);
+        
+        $customLog->initialize($exception->getLogPath());
+        $customLog->error($exception->getMessage());
+        $customLog->uninitialized();
     }
 }

@@ -37,7 +37,8 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 ### Migration
 ```
-php artisan migrate
+php artisan migrate:fresh
+php artisan migrate OR php artisan migrate:refresh
 ```
 
 ### Seeding
