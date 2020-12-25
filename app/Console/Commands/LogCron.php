@@ -74,4 +74,15 @@ class LogCron extends Command
 
         return 0;
     }
+
+    /**
+     * Handle a job failure.
+     *
+     * @param Throwable $exception
+     * @return void
+     */
+    public function failed(Throwable $exception)
+    {
+        // Send user notification of failure, etc...
+    }
 }
