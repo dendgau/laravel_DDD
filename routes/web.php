@@ -17,7 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test/index', 'TestingController@index')->name('index_test');
-Route::get('/test/log', 'TestingController@log')->name('log_test');
-Route::get('/test/createBlog', 'TestingController@createBlog')->name('create_blog');
-Route::get('/test/getBlog', 'TestingController@getBlog')->name('get_blog');
+Route::group([
+    'prefix' => 'test'
+], function() {
+    Route::get('index', 'TestingController@index')->name('index_test');
+    Route::get('log', 'TestingController@log')->name('log_test');
+    
+    // For blog
+    Route::group([
+        'prefix' => 'blog'
+    ], function() {
+        Route::get('create', 'TestingController@createBlog')->name('create_blog');
+        Route::get('get', 'TestingController@getBlog')->name('get_blog');
+    });
+   
+});

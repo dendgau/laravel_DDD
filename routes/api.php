@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => 'api', 'prefix' => 'auth'], function() {
+Route::group([
+    'middleware' => 'api', 
+    'prefix' => 'auth'
+], function() {
     Route::post('login', 'APIAuthController@login')->name('api_auth_login');
     Route::post('register', 'APIAuthController@register')->name('api_auth_register');
     Route::post('logout', 'APIAuthController@logout')->name('api_auth_logout');
