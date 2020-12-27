@@ -18,9 +18,9 @@ Route::group([
     'middleware' => 'api', 
     'prefix' => 'auth'
 ], function() {
-    Route::post('login', 'APIAuthController@login')->name('api_auth_login');
-    Route::post('register', 'APIAuthController@register')->name('api_auth_register');
-    Route::post('logout', 'APIAuthController@logout')->name('api_auth_logout');
-    Route::post('refresh', 'APIAuthController@refresh')->name('api_auth_refresh');
-    Route::get('profile', 'APIAuthController@profile')->name('api_auth_profile');
+    Route::post('login', 'Api\AuthController@login')->name('api_login');
+    Route::post('register', 'Api\AuthController@register')->name('api_register');
+    Route::post('logout', 'Api\AuthController@logout')->name('api_logout');
+    Route::post('refresh', 'Api\AuthController@refresh')->name('api_refresh');
+    Route::get('profile', 'Api\AuthController@profile')->name('api_profile');
 });

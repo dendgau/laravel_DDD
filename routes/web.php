@@ -20,15 +20,14 @@ Route::get('/', function () {
 Route::group([
     'prefix' => 'test'
 ], function() {
-    Route::get('index', 'TestingController@index')->name('index_test');
-    Route::get('log', 'TestingController@log')->name('log_test');
+    Route::get('index', 'Web\TestingController@index')->name('test_index');
+    Route::get('log', 'Web\TestingController@log')->name('test_log');
     
     // For blog
     Route::group([
         'prefix' => 'blog'
     ], function() {
-        Route::get('create', 'TestingController@createBlog')->name('create_blog');
-        Route::get('get', 'TestingController@getBlog')->name('get_blog');
+        Route::get('create', 'Web\TestingController@createBlog')->name('blog_create');
+        Route::get('get', 'Web\TestingController@getBlog')->name('blog_get');
     });
-   
 });

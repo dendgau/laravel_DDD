@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use Domain\Contracts\Repositories\UserRepositoryContract;
@@ -15,7 +16,7 @@ use Validator;
  * @inheritDoc https://jwt-auth.readthedocs.io/en/develop/auth-guard/
  * @package App\Http\Controllers
  */
-class APIAuthController extends Controller
+class AuthController extends Controller
 {
     /**
      * AuthController constructor.
