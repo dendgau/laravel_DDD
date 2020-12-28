@@ -16,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => 'api', 
-    'prefix' => 'auth'
+    'prefix' => 'api'
 ], function() {
-    Route::post('login', 'Api\AuthController@login')->name('api_login');
-    Route::post('register', 'Api\AuthController@register')->name('api_register');
-    Route::post('logout', 'Api\AuthController@logout')->name('api_logout');
-    Route::post('refresh', 'Api\AuthController@refresh')->name('api_refresh');
-    Route::get('profile', 'Api\AuthController@profile')->name('api_profile');
+    Route::group([
+        'prefix' => 'auth'
+    ], function() {
+        Route::post('login', 'Api\AuthController@login')->name('api_login');
+        Route::post('register', 'Api\AuthController@register')->name('api_register');
+        Route::post('logout', 'Api\AuthController@logout')->name('api_logout');
+        Route::post('refresh', 'Api\AuthController@refresh')->name('api_refresh');
+        Route::get('profile', 'Api\AuthController@profile')->name('api_profile');
+    });
 });

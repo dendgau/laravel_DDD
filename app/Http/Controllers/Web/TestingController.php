@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Domain\Contracts\Services\TestingServiceContract;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Infrastructure\Utils\CustomLogger;
 use Domain\Contracts\Repositories\UserRepositoryContract;
 use Domain\Contracts\Repositories\BlogRepositoryContract;
 use Domain\Contracts\Repositories\CommentRepositoryContract;
+use Infrastructure\Utils\CustomLogger;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class TestingController

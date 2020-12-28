@@ -17,9 +17,9 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if ($request->is('api/*') || $request->wantsJson()) {
+        if ($request->is('api/*')) {
             throw new ApiException('User have not logged yet', $request->all());
         }
-        return route('login');
+        return route('auth_login');
     }
 }
