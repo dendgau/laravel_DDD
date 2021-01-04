@@ -13,21 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// For testing
 Route::group([
     'prefix' => 'test',
     'middleware' => 'auth:web'
 ], function() {
-    // For testing
     Route::get('index', 'Web\TestingController@index')->name('test_index');
     Route::get('log', 'Web\TestingController@log')->name('test_log');
+});
 
-    // For blog
-    Route::group([
-        'prefix' => 'blog'
-    ], function() {
-        Route::get('create', 'Web\TestingController@createBlog')->name('test_blog_create');
-        Route::get('get', 'Web\TestingController@getBlog')->name('test_blog_get');
-    });
+// For blog
+Route::group([
+    'prefix' => 'blog',
+    'middleware' => 'auth:web'
+], function() {
+    Route::get('create', 'Web\BlogController@create')->name('blog_create');
+    Route::get('get', 'Web\BlogController@get')->name('blog_get');
 });
 
 // For auth
