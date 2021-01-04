@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Class BaseRepository
- * @package Domain\Abstractions
+ * @package Infrastructure\Persistences\Abstractions
  */
 abstract class BaseRepository extends AbstractionBaseRepository implements BaseRepositoryContract, AdvanceRepositoryContract
 {
