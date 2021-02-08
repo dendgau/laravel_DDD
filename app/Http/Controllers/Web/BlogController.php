@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use Domain\Contracts\Repositories\BlogRepositoryContract;
 use Domain\Contracts\Repositories\CommentRepositoryContract;
 use Domain\Contracts\Repositories\UserRepositoryContract;
+use Domain\Contracts\Services\BlogServiceContract;
 use Domain\Contracts\Services\TestingServiceContract;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 /**
  * Class BlogController
@@ -17,60 +20,39 @@ use Illuminate\Support\Facades\DB;
 class BlogController extends Controller
 {
     /**
-     * TestingController constructor.
-     * @param TestingServiceContract $appService
+     * BlogController constructor.
+     * @param BlogServiceContract $appService
      */
-    public function __construct(TestingServiceContract $appService)
+    public function __construct(BlogServiceContract $appService)
     {
         parent::__construct($appService);
     }
 
     /**
-     * Get user and blogs with relationship
+     * @return mixed
      */
     public function list()
     {
-        /** @var $userRepo UserRepositoryContract */
-        $userRepo = app(UserRepositoryContract::class);
-
         DB::enableQueryLog();
-
-        // Play the role as lazy load
-        $user = $userRepo->all()->first();
-        $blogs = $user->blogs->all();
-
-        // Play the role as eager load
-        $users = $userRepo->with('blogs.comments')->get();
-        $comments = $users->get(0)
-            ->blogs->get(0)
-            ->comments->all();
-
+        $blog1 = $this->appService->getListBlogBelongUserByLazyLoad();
+        $blog2 = $this->appService->getListBlogBelongUserByEagerLoad();
         $query = DB::getQueryLog();
         dd($query);
+        return $this->respView('blog.list', [
+            'blog1' => $blog1,
+            'blog2' => $blog2,
+        ]);
     }
 
     /**
      * @param Request $request
      * @param $id
+     * @return mixed
      */
     public function update(Request $request, $id)
     {
-        /** @var $blogRepo BlogRepositoryContract */
-        $blogRepo = app(BlogRepositoryContract::class);
-
-        // Check blog exist for failure
-        $blog = $blogRepo->find($id);
-
-        // For POST method
-        if ($title = $request->has('title') &&
-            $content = $request->has('content')
-        ) {
-            $blog->title = $title;
-            $blog->content = $content;
-            $blog->save();
-        }
-
-        // For GET method
+        $paramsUpdate = $request->only(['title', 'content']);
+        $blog = $this->appService->updateBlogById($id, $paramsUpdate);
         return $this->respView('blog.update', [
             'title' => $blog->title,
             'content' => $blog->content
@@ -83,46 +65,6 @@ class BlogController extends Controller
      */
     public function create(Request $request)
     {
-        /** @var $userRepo UserRepositoryContract */
-        $userRepo = app(UserRepositoryContract::class);
-
-        /** @var $blogRepo BlogRepositoryContract */
-        $blogRepo = app(BlogRepositoryContract::class);
-
-        /** @var $commentRepo CommentRepositoryContract */
-        $commentRepo = app(CommentRepositoryContract::class);
-
-        $user = $userRepo->all()->first();
-        try {
-            $blogRepo->beginTransaction();
-            $blogRepo->where('user_id', $user->id)->delete();
-
-            // Create multi blogs
-            $blogInsert = [];
-            for ($i = 0; $i < 100; $i++) {
-                $blogInsert[] = [
-                    'user_id' => $user->id,
-                    'title' => "Title blog {$i}",
-                    'content' => "Content blog {$i}",
-                ];
-            }
-            $blogRepo->insert($blogInsert);
-            $blogs = $blogRepo->all();
-
-            // Create multi comment
-            $commentInsert = [];
-            foreach ($blogs as $blog) {
-                $commentInsert[] = [
-                    'user_id' => $user->id,
-                    'blog_id' => $blog->id,
-                    'content' => "Content comment {$i}",
-                ];
-            }
-            $commentRepo->insert($commentInsert);
-
-            $blogRepo->commit();
-        } catch (Exception $exc) {
-            $blogRepo->rollback();
-        }
+        $this->appService->autoInsertBlogComment();
     }
 }
