@@ -20,13 +20,13 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Repositories\UserRepository::class,
             true
         );
-        
+
         $this->app->bind(
             \Domain\Contracts\Repositories\BlogRepositoryContract::class,
             \Domain\Repositories\BlogRepository::class,
             true
         );
-        
+
         $this->app->bind(
             \Domain\Contracts\Repositories\CommentRepositoryContract::class,
             \Domain\Repositories\CommentRepository::class,
@@ -37,6 +37,18 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             \Domain\Contracts\Services\TestingServiceContract::class,
             \Domain\Services\TestingService::class,
+            true
+        );
+
+        $this->app->bind(
+            \Domain\Contracts\Services\BlogServiceContract::class,
+            \Domain\Services\BlogService::class,
+            true
+        );
+
+        $this->app->bind(
+            \Domain\Contracts\Services\CommentServiceContract::class,
+            \Domain\Services\CommentService::class,
             true
         );
     }

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Response\JsonResponseCustom;
 use Domain\Contracts\Services\BaseServiceContract;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\View\View;
 use PHPUnit\Util\Json;
 
 /**
@@ -42,7 +44,7 @@ class Controller extends BaseController
     /**
      * @param $view
      * @param $data
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|mixed
+     * @return mixed
      */
     public function respView($view, $data)
     {
