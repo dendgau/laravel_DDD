@@ -28,7 +28,7 @@ class BlogController extends Controller
     /**
      * Get user and blogs with relationship
      */
-    public function get()
+    public function list()
     {
         /** @var $userRepo UserRepositoryContract */
         $userRepo = app(UserRepositoryContract::class);
@@ -47,6 +47,34 @@ class BlogController extends Controller
 
         $query = DB::getQueryLog();
         dd($query);
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     */
+    public function update(Request $request, $id)
+    {
+        /** @var $blogRepo BlogRepositoryContract */
+        $blogRepo = app(BlogRepositoryContract::class);
+
+        // Check blog exist for failure
+        $blog = $blogRepo->find($id);
+
+        // For POST method
+        if ($title = $request->has('title') &&
+            $content = $request->has('content')
+        ) {
+            $blog->title = $title;
+            $blog->content = $content;
+            $blog->save();
+        }
+
+        // For GET method
+        return $this->respView('blog.update', [
+            'title' => $blog->title,
+            'content' => $blog->content
+        ]);
     }
 
     /**

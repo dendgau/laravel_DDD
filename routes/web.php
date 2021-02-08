@@ -28,7 +28,8 @@ Route::group([
     'middleware' => 'auth:web'
 ], function() {
     Route::get('create', 'Web\BlogController@create')->name('blog_create');
-    Route::get('get', 'Web\BlogController@get')->name('blog_get');
+    Route::get('list', 'Web\BlogController@list')->name('blog_get');
+    Route::match(['POST', 'GET'], '{id}', 'Web\BlogController@update')->name('blog_update');
 });
 
 // For auth
