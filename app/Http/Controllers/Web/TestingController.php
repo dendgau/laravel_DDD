@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Domain\Contracts\Services\TestingServiceContract;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Infrastructure\Utils\CustomLogger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -29,11 +30,8 @@ class TestingController extends Controller
      */
     public function index(Request $request)
     {
-        /** @var $testService TestingServiceContract */
-        $testService = $this->getAppService();
-
         $data = [
-            'users' => $testService->getAllUser()
+            'users' => $this->getService()->getAllUser()
         ];
 
         return $this->respView('testing.index', $data);
@@ -41,18 +39,15 @@ class TestingController extends Controller
 
     /**
      * @param Request $request
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public function log(Request $request)
     {
-        /** @var $testService TestingServiceContract */
-        $testService = $this->getAppService();
-
         /** @var $customLog CustomLogger */
         $customLog = app(CustomLogger::class);
 
         $context = [
-            'users' => $testService->getAllUser()->toArray()
+            'users' => $this->getService()->getAllUser()->toArray()
         ];
 
         foreach (config('logging.path') as $key => $path) {

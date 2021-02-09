@@ -95,7 +95,10 @@ class BlogService extends BaseService implements BlogServiceContract
         /** @var $blogRepo BlogRepositoryContract */
         $blogRepo = app(BlogRepositoryContract::class);
 
-        $blogRepo->where('user_id', Auth::id())->delete();
+        $blogRepo
+            ->where('user_id', Auth::id())
+            ->delete();
+
         $blogInsert = [];
         for ($i = 0; $i < 100; $i++) {
             $blogInsert[] = [
@@ -126,6 +129,7 @@ class BlogService extends BaseService implements BlogServiceContract
                 ->all()
                 ->pluck('id')
                 ->toArray();
+
             if (empty($blogs) || !$commentService->autoInsertComment($blogs)) {
                 throw new Exception('Can not auto create comment');
             }
