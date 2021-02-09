@@ -115,9 +115,6 @@ class BlogService extends BaseService implements BlogServiceContract
         /** @var CommentServiceContract $commentService */
         $commentService = app(CommentServiceContract::class);
 
-        /** @var BlogRepositoryContract $blogRepo */
-        $blogRepo = app(BlogRepositoryContract::class);
-
         try {
             DB::beginTransaction();
 
@@ -125,7 +122,10 @@ class BlogService extends BaseService implements BlogServiceContract
                 throw new Exception('Can not auto create blog');
             }
 
-            $blogs = $blogRepo->all(['id'])->pluck('id')->toArray();
+            $blogs = $this->getRepo()
+                ->all()
+                ->pluck('id')
+                ->toArray();
             if (empty($blogs) || !$commentService->autoInsertComment($blogs)) {
                 throw new Exception('Can not auto create comment');
             }
