@@ -34,8 +34,8 @@ class BlogController extends Controller
     public function list()
     {
         DB::enableQueryLog();
-        $blog1 = $this->appService->getListBlogBelongUserByLazyLoad();
-        $blog2 = $this->appService->getListBlogBelongUserByEagerLoad();
+        $blog1 = $this->getService()->getListBlogBelongUserByLazyLoad();
+        $blog2 = $this->getService()->getListBlogBelongUserByEagerLoad();
         $query = DB::getQueryLog();
         dd($query);
         return $this->respView('blog.list', [
@@ -52,7 +52,7 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         $paramsUpdate = $request->only(['title', 'content']);
-        $blog = $this->appService->updateBlogById($id, $paramsUpdate);
+        $blog = $this->getService()->updateBlogById($id, $paramsUpdate);
         return $this->respView('blog.update', [
             'title' => $blog->title,
             'content' => $blog->content
@@ -65,6 +65,6 @@ class BlogController extends Controller
      */
     public function create(Request $request)
     {
-        $this->appService->autoInsertBlogComment();
+        $this->getService()->autoInsertBlogComment();
     }
 }
