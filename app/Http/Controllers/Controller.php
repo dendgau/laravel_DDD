@@ -36,7 +36,7 @@ class Controller extends BaseController
     /**
      * @return BaseServiceContract
      */
-    public function getAppService()
+    public function getService()
     {
         return $this->appService;
     }
