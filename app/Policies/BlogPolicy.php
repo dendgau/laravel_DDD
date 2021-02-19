@@ -18,7 +18,7 @@ class BlogPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->name == 'root'; // Hard code for super admin
+        return $this->checkIsAdmin($user);
     }
 
     /**
@@ -41,7 +41,7 @@ class BlogPolicy
      */
     public function create(User $user)
     {
-
+        return true;
     }
 
     /**
@@ -99,6 +99,15 @@ class BlogPolicy
      */
     private function checkIsAuthor(User $user, BlogEntity $blogEntity)
     {
-        return $user->id == $blogEntity->user_id;
+        return $this->checkIsAdmin($user) && ($user->id == $blogEntity->user_id);
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    private function checkIsAdmin(User $user)
+    {
+        return ($user->email == 'root@ddd-frontweb-local.com'); // Hard code for super admin
     }
 }
