@@ -27,9 +27,11 @@ Route::group([
     'prefix' => 'blog',
     'middleware' => 'auth:web'
 ], function() {
-    Route::get('create', 'Web\BlogController@create')->name('blog_create');
-    Route::get('list', 'Web\BlogController@list')->name('blog_get');
-    Route::match(['POST', 'GET'], '{id}', 'Web\BlogController@update')->name('blog_update');
+    Route::get('index', 'Web\BlogController@index')->name('blog_list');
+    Route::get('{id}/show', 'Web\BlogController@show')->name('blog_show');
+    Route::post('{id}/update', 'Web\BlogController@update')->name('blog_update');
+    Route::post('create', 'Web\BlogController@create')->name('blog_create');
+    Route::post('{id}/destroy', 'Web\BlogController@destroy')->name('blog_destroy');
 });
 
 // For auth
