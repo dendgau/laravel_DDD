@@ -2,6 +2,8 @@
 
 namespace Domain\Contracts\Services;
 
+use Domain\Entities\Eloquents\BlogEntity;
+
 /**
  * Interface BlogServiceContract
  * @package Domain\Contracts\Services
@@ -22,10 +24,23 @@ interface BlogServiceContract extends BaseServiceContract
 
     /**
      * @param $id
-     * @param $params
-     * @return mixed
+     * @return BlogEntity
      */
-    public function updateBlogById($id, $params);
+    public function getBlog($id);
+
+    /**
+     * @param $id
+     * @param $params
+     * @return bool|mixed
+     */
+    public function updateBlog($id, $params);
+
+    /**
+     * @param $id
+     * @return bool|null
+     * @throws Exception
+     */
+    public function deleteBlog($id);
 
     /**
      * Create multi blogs

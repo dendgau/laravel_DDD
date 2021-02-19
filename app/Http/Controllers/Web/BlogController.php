@@ -8,10 +8,13 @@ use Domain\Contracts\Repositories\CommentRepositoryContract;
 use Domain\Contracts\Repositories\UserRepositoryContract;
 use Domain\Contracts\Services\BlogServiceContract;
 use Domain\Contracts\Services\TestingServiceContract;
+use Domain\Entities\Eloquents\BlogEntity;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use Exception;
 
 /**
  * Class BlogController
@@ -31,7 +34,7 @@ class BlogController extends Controller
     /**
      * @return mixed
      */
-    public function list()
+    public function index()
     {
         DB::enableQueryLog();
         $blog1 = $this->getService()->getListBlogBelongUserByLazyLoad();
@@ -49,14 +52,25 @@ class BlogController extends Controller
      * @param $id
      * @return mixed
      */
-    public function update(Request $request, $id)
+    public function show(Request $request, $id)
     {
-        $paramsUpdate = $request->only(['title', 'content']);
-        $blog = $this->getService()->updateBlogById($id, $paramsUpdate);
+        $blog = $this->getService()->getBlog($id);
         return $this->respView('blog.update', [
             'title' => $blog->title,
             'content' => $blog->content
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function update(Request $request, $id)
+    {
+        $paramsUpdate = $request->only(['title', 'content']);
+        $this->getService()->updateBlog($id, $paramsUpdate);
+        return redirect()->route('blog_show', ['id' => $id]);
     }
 
     /**
@@ -66,5 +80,22 @@ class BlogController extends Controller
     public function create(Request $request)
     {
         $this->getService()->autoInsertBlogComment();
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Request $request, $id)
+    {
+        try {
+            $this->getService()->deleteBlog($id);
+            $resp = redirect()->route('blog_list');
+        } catch (Exception $ex) {
+            Log::error($ex->getMessage());
+            $resp = redirect()->route('blog_update', ['id' => $id]);
+        }
+        return $resp;
     }
 }

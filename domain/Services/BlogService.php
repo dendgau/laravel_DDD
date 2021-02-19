@@ -7,6 +7,7 @@ use Domain\Contracts\Repositories\BlogRepositoryContract;
 use Domain\Contracts\Repositories\UserRepositoryContract;
 use Domain\Contracts\Services\BlogServiceContract;
 use Domain\Contracts\Services\CommentServiceContract;
+use Domain\Entities\Eloquents\BlogEntity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -63,27 +64,42 @@ class BlogService extends BaseService implements BlogServiceContract
 
     /**
      * @param $id
-     * @param $params
-     * @return mixed
+     * @return BlogEntity
      */
-    public function updateBlogById($id, $params)
+    public function getBlog($id)
     {
         /** @var $blogRepo BlogRepositoryContract */
         $blogRepo = app(BlogRepositoryContract::class);
+        return $blogRepo->find($id);
+    }
 
-        // Check blog exist for failure
-        $blog = $blogRepo->find($id);
+    /**
+     * @param $id
+     * @return bool|null
+     * @throws Exception
+     */
+    public function deleteBlog($id)
+    {
+        return $this->getBlog($id)->delete();
+    }
 
-        // For POST method
+    /**
+     * @param $id
+     * @param $params
+     * @return bool|mixed
+     */
+    public function updateBlog($id, $params)
+    {
         $title = $params['title'] ?? '';
         $content = $params['content'] ?? '';
+        $isSave = false;
         if (!empty($title) && !empty($content)) {
+            $blog = $this->getBlog($id);
             $blog->title = $title;
             $blog->content = $content;
-            $blog->save();
+            $isSave = $blog->save();
         }
-
-        return $blog;
+        return $isSave;
     }
 
     /**
