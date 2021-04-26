@@ -51,6 +51,12 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Services\CommentService::class,
             true
         );
+
+        $this->app->bind(
+            \Domain\Contracts\Services\EbayServiceContract::class,
+            \Domain\Services\Api\EbayService::class,
+            true
+        );
     }
 
     /**

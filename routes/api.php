@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-    'middleware' => 'api', 
+    'middleware' => 'api',
     'prefix' => 'api'
 ], function() {
     Route::group([
@@ -28,3 +28,4 @@ Route::group([
         Route::get('profile', 'Api\AuthController@profile')->name('api_profile');
     });
 });
+Route::get('api/ebay/test', 'Api\EbayController@test')->name('api_ebay_test');
