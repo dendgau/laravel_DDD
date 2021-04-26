@@ -33,10 +33,13 @@ class InventoryService extends BaseService implements EbayServiceContract
         $ebayInventoryItem = app(InventoryItemService::class);
 
         $params = $this->prepareCreateInventory();
-        $respCreateInventoryLocation = $ebayInventoryLocation->createInventoryLocation($params);
-        // $respBulkCreateInventoryItem = $ebayInventoryItem->createInventoryItem($params);
+        // $respCreateInventoryLocation = $ebayInventoryLocation->createInventoryLocation($params);
+        $respBulkCreateInventoryItem = $ebayInventoryItem->createInventoryItem($params);
 
-        return $respCreateInventoryLocation;
+        return [
+            // $respCreateInventoryLocation,
+            $respBulkCreateInventoryItem
+        ];
     }
 
     /**
@@ -46,11 +49,11 @@ class InventoryService extends BaseService implements EbayServiceContract
     {
         return [
             'location' => [
-                'key' => 'LEDT_20210426',
-                'name' => 'Laravel Ebay Location 2021-04-26'
+                'key' => 'LEDT_202123104261',
+                'name' => 'Laravel Ebay111 Location 2021-04-26'
             ],
             'item' => [
-                'sku' => 'WMSDT0011_IIDT01111111'
+                'sku' => 'WMSDT0011_IIDT0111123111111'
             ]
         ];
     }

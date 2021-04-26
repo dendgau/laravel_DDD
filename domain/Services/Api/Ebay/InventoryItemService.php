@@ -4,8 +4,10 @@ namespace Domain\Services\Api\Ebay;
 
 use DTS\eBaySDK\Inventory\Types\Availability;
 use DTS\eBaySDK\Inventory\Types\CreateOrReplaceInventoryItemRestRequest;
+use DTS\eBaySDK\Inventory\Types\Dimension;
 use DTS\eBaySDK\Inventory\Types\PackageWeightAndSize;
 use DTS\eBaySDK\Inventory\Types\PickupAtLocationAvailability;
+use DTS\eBaySDK\Inventory\Types\Product;
 use DTS\eBaySDK\Inventory\Types\ShipToLocationAvailability;
 use DTS\eBaySDK\Inventory\Types\TimeDuration;
 use DTS\eBaySDK\Inventory\Types\Weight;
@@ -41,7 +43,6 @@ class InventoryItemService
     {
         return new CreateOrReplaceInventoryItemRestRequest([
             'sku' => Arr::get($params, 'item.sku'),
-            'locale' => 'en_US',
             'packageWeightAndSize' => $this->preparePackageWeightAndSize(),
             'product' => $this->prepareProduct(),
             'condition' => 'NEW',
@@ -66,10 +67,10 @@ class InventoryItemService
      */
     protected function prepareDimensions()
     {
-        return new Dimensions([
-            'height' => 20,
-            'length' => 20,
-            'width' => 20,
+        return new Dimension([
+            'height' => doubleval(20),
+            'length' => doubleval(20),
+            'width' => doubleval(20),
             'unit' => 'CENTIMETER'
         ]);
     }
@@ -81,7 +82,7 @@ class InventoryItemService
     {
         return new Weight([
             'unit' => 'GRAM',
-            'value' => 200
+            'value' => doubleval(200)
         ]);
     }
 
@@ -116,7 +117,9 @@ class InventoryItemService
     protected function prepareAvailability(array $params)
     {
         return new Availability([
-            'pickupAtLocationAvailability' => $this->preparePickupAtLocationAvailability($params),
+            'pickupAtLocationAvailability' => [
+                $this->preparePickupAtLocationAvailability($params)
+            ],
             'shipToLocationAvailability' => $this->prepareShipToLocationAvailability($params)
         ]);
     }
