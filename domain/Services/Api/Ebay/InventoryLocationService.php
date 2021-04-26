@@ -1,50 +1,52 @@
 <?php
 
-namespace Domain\Services\Api;
+namespace Domain\Services\Api\Ebay;
 
-use Domain\Abstractions\BaseService;
-use Domain\Contracts\Repositories\UserRepositoryContract;
 use DTS\eBaySDK\Inventory\Types\Address;
 use DTS\eBaySDK\Inventory\Types\CreateInventoryLocationRestRequest;
 use DTS\eBaySDK\Inventory\Types\LocationDetails;
 use \Hkonnet\LaravelEbay\EbayServices;
+use Illuminate\Support\Arr;
 
 /**
- * Class EbayLocationService
+ * Class InventoryLocationService
  * @package Domain\Services
  */
-class EbayLocationService
+class InventoryLocationService
 {
     /**
+     * @param array $params
      * @return mixed
      */
-    public function createInventoryLocation()
+    public function createInventoryLocation(array $params)
     {
         /** @var $ebayService EbayServices */
-        $ebayService = app(EbayServices::class);
-        return $ebayService
-            ->createInventory(config('ebays'))
-            ->createInventoryLocation($this->prepareCreateInventoryLocationRequest());
+        $ebayService = app('Ebay');
+
+        return $ebayService->createInventoryLocation(
+            $this->prepareCreateInventoryLocationRequest($params)
+        );
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|mixed
+     * @param array $params
+     * @return CreateInventoryLocationRestRequest
      */
-    public function prepareCreateInventoryLocationRequest()
+    protected function prepareCreateInventoryLocationRequest(array $params): CreateInventoryLocationRestRequest
     {
         return new CreateInventoryLocationRestRequest([
-            'merchantLocationKey' => 'DTLaravel_ebay',
+            'merchantLocationKey' => Arr::get($params, 'location.key', ''),
+            'name' => Arr::get($params, 'location.name', ''),
             'location' => $this->prepareLocationDetail(),
-            'name' => 'DuyTran Laravel Ebay',
             'merchantLocationStatus' => 'ENABLED',
             'locationTypes' => ['WAREHOUSE', 'STORE']
         ]);
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|mixed
+     * @return LocationDetails
      */
-    public function prepareLocationDetail()
+    protected function prepareLocationDetail(): LocationDetails
     {
         return new LocationDetails([
             'address' => $this->prepareAddress()
@@ -52,9 +54,9 @@ class EbayLocationService
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|mixed
+     * @return Address
      */
-    public function prepareAddress()
+    protected function prepareAddress()
     {
         return new Address([
             'addressLine1' => '6816',

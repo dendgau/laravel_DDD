@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Hkonnet\LaravelEbay\EbayServices;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -54,9 +55,13 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(
             \Domain\Contracts\Services\EbayServiceContract::class,
-            \Domain\Services\Api\EbayService::class,
+            \Domain\Services\Api\Ebay\InventoryService::class,
             true
         );
+
+        $this->app->singleton('Ebay', function ($app) {
+            return $app->make(EbayServices::class)->createInventory(config('ebays'));
+        });
     }
 
     /**
