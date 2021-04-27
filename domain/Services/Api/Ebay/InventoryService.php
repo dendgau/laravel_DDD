@@ -51,12 +51,10 @@ class InventoryService extends BaseService implements EbayServiceContract
         try {
             // Refresh token
             $respRefreshToken = $this->ebayOAuthService->refreshToken();
-
-            // Pre creation inventory
             Config::set('ebays.header.authorization', $respRefreshToken['access_token']);
-            $params = $this->prepareCreateInventory();
 
             // Process create inventory
+            $params = $this->prepareCreateInventory();
             $this->ebayInventoryLocationService->createInventoryLocation($params);
             $this->ebayInventoryItemService->createInventoryItem($params);
             $respCreateOffer = $this->ebayInventoryOffer->createInventoryOffer($params);
