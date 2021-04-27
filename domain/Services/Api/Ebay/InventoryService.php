@@ -50,10 +50,10 @@ class InventoryService extends BaseService implements EbayServiceContract
         return [
             'location' => [
                 'key' => 'LEDT_202123104261',
-                'name' => 'Laravel Ebay111 Location 2021-04-26'
+                'name' => 'Laravel Ebay1 Location 2021-04-26'
             ],
             'item' => [
-                'sku' => 'WMSDT0011_IIDT0111123111111'
+                'sku' => 'WMSDT0011_IIDT01'
             ]
         ];
     }
