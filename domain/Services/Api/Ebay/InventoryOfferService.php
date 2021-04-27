@@ -76,7 +76,8 @@ class InventoryOfferService
             'listingPolicies' => $this->prepareListingPolicies(),
             'pricingSummary' => $this->preparePricingSummary(),
             'quantityLimitPerBuyer' => 100,
-            'availableQuantity' => 100
+            'availableQuantity' => 100,
+            'categoryId' => '53146'
         ]);
     }
 

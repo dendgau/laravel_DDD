@@ -96,7 +96,7 @@ class InventoryItemService
     protected function prepareProduct(): Product
     {
         return new Product([
-            'title' => 'GoPro Hero4 Helmet Cam',
+            'title' => 'GoPro Hero4 Helmet Cam' . time(),
             'description' => 'New GoPro Hero4 Helmet Cam. Unopened box.',
             'brand' => 'GoPro',
             'mpn' => 'CHDHX-401',
