@@ -2,11 +2,14 @@
 
 namespace Domain\Services\Api\Ebay;
 
+use Domain\Services\Api\Ebay\Traits\ProcessResponse;
 use DTS\eBaySDK\Inventory\Types\Address;
 use DTS\eBaySDK\Inventory\Types\CreateInventoryLocationRestRequest;
+use DTS\eBaySDK\Inventory\Types\GetInventoryItemRestRequest;
+use DTS\eBaySDK\Inventory\Types\GetInventoryLocationRestRequest;
 use DTS\eBaySDK\Inventory\Types\LocationDetails;
-use \Hkonnet\LaravelEbay\EbayServices;
 use Illuminate\Support\Arr;
+use DTS\eBaySDK\Inventory\Services\InventoryService;
 
 /**
  * Class InventoryLocationService
@@ -14,18 +17,44 @@ use Illuminate\Support\Arr;
  */
 class InventoryLocationService
 {
+    use ProcessResponse;
+
+    protected InventoryService $ebayInventory;
+
     /**
      * @param array $params
-     * @return mixed
+     * @return array
+     * @throws \Exception
      */
-    public function createInventoryLocation(array $params)
+    public function createInventoryLocation(array $params): array
     {
-        /** @var $ebayService EbayServices */
-        $ebayService = app('Ebay');
+        $this->ebayInventory = app('EbayInventory');
+        try {
+            $result = $this->processResponse(
+                $this->ebayInventory->createInventoryLocation(
+                    $this->prepareCreateInventoryLocationRequest($params)
+                )
+            );
+        } catch (\Exception $ex) {
+            $result = $this->getInventoryLocation($params);
+        }
+        return $result;
+    }
 
-        return $ebayService->createInventoryLocation(
-            $this->prepareCreateInventoryLocationRequest($params)
+    public function getInventoryLocation(array $params): array
+    {
+        $this->ebayInventory = app('EbayInventory');
+        $result = $this->ebayInventory->getInventoryLocation(
+            $this->prepareGetInventoryLocationRequest($params)
         );
+        return $this->processResponse($result);;
+    }
+
+    protected function prepareGetInventoryLocationRequest(array $params): GetInventoryLocationRestRequest
+    {
+        return new GetInventoryLocationRestRequest([
+            'merchantLocationKey' => Arr::get($params, 'location.key', ''),
+        ]);
     }
 
     /**
@@ -56,7 +85,7 @@ class InventoryLocationService
     /**
      * @return Address
      */
-    protected function prepareAddress()
+    protected function prepareAddress(): Address
     {
         return new Address([
             'addressLine1' => '6816',

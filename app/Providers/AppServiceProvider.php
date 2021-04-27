@@ -59,8 +59,15 @@ class AppServiceProvider extends ServiceProvider
             true
         );
 
-        $this->app->singleton('Ebay', function ($app) {
-            return $app->make(EbayServices::class)->createInventory(config('ebays'));
+        $this->app->singleton('EbayInventory', function ($app) {
+            return $app->make(EbayServices::class)->createInventory(config('ebays.header'));
+        });
+
+        $this->app->singleton('EbayOAuth', function ($app) {
+            $config = array_merge(config('ebays.header'), [
+                'ruName' => config('ebays.RuName')
+            ]);
+            return $app->make(EbayServices::class)->createOAuth($config);
         });
     }
 

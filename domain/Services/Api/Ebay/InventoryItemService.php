@@ -2,6 +2,7 @@
 
 namespace Domain\Services\Api\Ebay;
 
+use Domain\Services\Api\Ebay\Traits\ProcessResponse;
 use DTS\eBaySDK\Inventory\Types\Availability;
 use DTS\eBaySDK\Inventory\Types\CreateOrReplaceInventoryItemRestRequest;
 use DTS\eBaySDK\Inventory\Types\Dimension;
@@ -11,9 +12,8 @@ use DTS\eBaySDK\Inventory\Types\Product;
 use DTS\eBaySDK\Inventory\Types\ShipToLocationAvailability;
 use DTS\eBaySDK\Inventory\Types\TimeDuration;
 use DTS\eBaySDK\Inventory\Types\Weight;
-use \Hkonnet\LaravelEbay\EbayServices;
 use Illuminate\Support\Arr;
-use Illuminate\Validation\Rules\Dimensions;
+use DTS\eBaySDK\Inventory\Services\InventoryService;
 
 /**
  * Class InventoryLocationService
@@ -21,25 +21,29 @@ use Illuminate\Validation\Rules\Dimensions;
  */
 class InventoryItemService
 {
+    use ProcessResponse;
+
+    protected InventoryService $ebayInventory;
+
     /**
      * @param array $params
-     * @return mixed
+     * @return array
+     * @throws \Exception
      */
-    public function createInventoryItem(array $params)
+    public function createInventoryItem(array $params): array
     {
-        /** @var $ebayService EbayServices */
-        $ebayService = app('Ebay');
-
-        return $ebayService->createOrReplaceInventoryItem(
+        $this->ebayInventory = app('EbayInventory');
+        $result = $this->ebayInventory->createOrReplaceInventoryItem(
             $this->prepareCreateOrReplaceInventoryItem($params)
         );
+        return $this->processResponse($result);
     }
 
     /**
      * @param array $params
      * @return CreateOrReplaceInventoryItemRestRequest
      */
-    public function prepareCreateOrReplaceInventoryItem(array $params)
+    public function prepareCreateOrReplaceInventoryItem(array $params): CreateOrReplaceInventoryItemRestRequest
     {
         return new CreateOrReplaceInventoryItemRestRequest([
             'sku' => Arr::get($params, 'item.sku'),
@@ -53,7 +57,7 @@ class InventoryItemService
     /**
      * @return PackageWeightAndSize
      */
-    protected function preparePackageWeightAndSize()
+    protected function preparePackageWeightAndSize(): PackageWeightAndSize
     {
         return new PackageWeightAndSize([
             'dimensions' => $this->prepareDimensions(),
@@ -63,9 +67,9 @@ class InventoryItemService
     }
 
     /**
-     * @return Dimensions
+     * @return Dimension
      */
-    protected function prepareDimensions()
+    protected function prepareDimensions(): Dimension
     {
         return new Dimension([
             'height' => doubleval(20),
@@ -78,7 +82,7 @@ class InventoryItemService
     /**
      * @return Weight
      */
-    protected function prepareWeight()
+    protected function prepareWeight(): Weight
     {
         return new Weight([
             'unit' => 'GRAM',
@@ -89,7 +93,7 @@ class InventoryItemService
     /**
      * @return Product
      */
-    protected function prepareProduct()
+    protected function prepareProduct(): Product
     {
         return new Product([
             'title' => 'GoPro Hero4 Helmet Cam',
@@ -114,7 +118,7 @@ class InventoryItemService
      * @param array $params
      * @return Availability
      */
-    protected function prepareAvailability(array $params)
+    protected function prepareAvailability(array $params): Availability
     {
         return new Availability([
             'pickupAtLocationAvailability' => [
@@ -124,7 +128,7 @@ class InventoryItemService
         ]);
     }
 
-    protected function prepareShipToLocationAvailability(array $params)
+    protected function prepareShipToLocationAvailability(array $params): ShipToLocationAvailability
     {
         return new ShipToLocationAvailability([
             'quantity' => 50
@@ -135,7 +139,7 @@ class InventoryItemService
      * @param array $params
      * @return PickupAtLocationAvailability
      */
-    protected function preparePickupAtLocationAvailability(array $params)
+    protected function preparePickupAtLocationAvailability(array $params): PickupAtLocationAvailability
     {
         return new PickupAtLocationAvailability([
             'availabilityType' => 'IN_STOCK',
@@ -148,7 +152,7 @@ class InventoryItemService
     /**
      * @return TimeDuration
      */
-    protected function prepareTimeDuration()
+    protected function prepareTimeDuration(): TimeDuration
     {
         return new TimeDuration([
             'unit' => 'BUSINESS_DAY',
