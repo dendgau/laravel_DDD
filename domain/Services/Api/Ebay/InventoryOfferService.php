@@ -45,7 +45,7 @@ class InventoryOfferService
     {
         $this->ebayInventory = app('EbayInventory');
         $result = $this->ebayInventory->publishOffer(
-            $this->prepareCreateInventoryOffer($offerId)
+            $this->preparePublishInventoryOffer($offerId)
         );
         return $this->processResponse($result);
     }
