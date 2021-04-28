@@ -145,14 +145,29 @@ class CustomLogger
         /** @var $utilDate CustomDateTime */
         $utilDate = app(CustomDateTime::class);
 
+        // Define path
         $today = $utilDate->now();
         $path = implode('/', [
             $path ?? config('logging.channels.custom.path'),
             $today->year,
-            $today->month,
-            $today->day . '.log',
+            $today->month
         ]);
 
-        return $path;
+        // Define name file
+        $listScan = scandir($path);
+        foreach ($listScan as $item) {
+            if (strpos($item, '.log') == false) {
+                continue;
+            }
+            $item = implode('/', [$path, $item]);
+            if (filesize($item) < 1024) {
+                return $item;
+            }
+        }
+
+        return implode('/', [
+            $path,
+            $today->day . '-' . time() . '.log',
+        ]);;
     }
 }
