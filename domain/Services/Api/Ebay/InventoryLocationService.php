@@ -41,6 +41,11 @@ class InventoryLocationService
         return $result;
     }
 
+    /**
+     * @param array $params
+     * @return array
+     * @throws \Exception
+     */
     public function getInventoryLocation(array $params): array
     {
         $this->ebayInventory = app('EbayInventory');
@@ -50,6 +55,10 @@ class InventoryLocationService
         return $this->processResponse($result);;
     }
 
+    /**
+     * @param array $params
+     * @return GetInventoryLocationRestRequest
+     */
     protected function prepareGetInventoryLocationRequest(array $params): GetInventoryLocationRestRequest
     {
         return new GetInventoryLocationRestRequest([
