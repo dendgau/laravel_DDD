@@ -28,4 +28,5 @@ Route::group([
         Route::get('profile', 'Api\AuthController@profile')->name('api_profile');
     });
 });
-Route::get('api/ebay/test', 'Api\EbayController@test')->name('api_ebay_test');
+Route::get('api/ebay/sdkTest', 'Api\EbayController@sdkTest')->name('api_ebay_sdk_test');
+Route::get('api/ebay/simpleTest', 'Api\EbayController@simpleTest')->name('api_ebay_simple_test');
