@@ -59,6 +59,10 @@ class AppServiceProvider extends ServiceProvider
             true
         );
 
+        $this->app->singleton('EbayPostOrder', function ($app) {
+            return $app->make(EbayServices::class)->createPostOrder(config('ebays.header'));
+        });
+
         $this->app->singleton('EbayInventory', function ($app) {
             return $app->make(EbayServices::class)->createInventory(config('ebays.header'));
         });

@@ -5,6 +5,8 @@ namespace Domain\Services\Api\Ebay;
 use Domain\Abstractions\BaseService;
 use Domain\Contracts\Repositories\UserRepositoryContract;
 use Domain\Contracts\Services\EbayServiceContract;
+use DTS\eBaySDK\PostOrder\Services\PostOrderService;
+use DTS\eBaySDK\PostOrder\Types\GetInquiryRestRequest;
 use Exception;
 use Illuminate\Support\Facades\Config;
 use Infrastructure\Utils\CustomLogger;
@@ -38,6 +40,24 @@ class InventoryService extends BaseService implements EbayServiceContract
         $this->ebayOAuthService = app(OAuthService::class);
         $this->ebayInventoryOffer = app(InventoryOfferService::class);
         parent::__construct($repo);
+    }
+
+    /**
+     * @return \DTS\eBaySDK\PostOrder\Types\GetInquiryRestResponse
+     * @throws Exception
+     */
+    public function getInquire()
+    {
+        // Refresh token
+        $respRefreshToken = $this->ebayOAuthService->refreshToken();
+        Config::set('ebays.header.authToken', $respRefreshToken['access_token']);
+
+        /** @var $ebayPostOrder PostOrderService */
+        $ebayPostOrder = app('EbayPostOrder');
+        $resp = $ebayPostOrder->getInquiry(new GetInquiryRestRequest([
+            'inquiryId' => '54321'
+        ]));
+        return $resp;
     }
 
     /**

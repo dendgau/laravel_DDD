@@ -28,15 +28,24 @@ class EbayController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function sdkTest(Request $request)
+    public function testSDK(Request $request)
     {
         return $this->appService->createInventory();
     }
 
     /**
      * @param Request $request
+     * @return mixed
      */
-    public function simpleTest(Request $request)
+    public function testInquire(Request $request)
+    {
+        return $this->appService->getInquire();
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function testSimple(Request $request)
     {
         /** @var SimpleService $simple */
         $simple = app(SimpleService::class);
