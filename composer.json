@@ -8,10 +8,11 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2.5",
+        "php": "^8.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "hkonnet/laravel-ebay": "^1.4",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "league/fractal": "^0.19.2",

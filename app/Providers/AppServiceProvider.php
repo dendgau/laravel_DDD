@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Hkonnet\LaravelEbay\EbayServices;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -51,6 +52,27 @@ class AppServiceProvider extends ServiceProvider
             \Domain\Services\CommentService::class,
             true
         );
+
+        $this->app->bind(
+            \Domain\Contracts\Services\EbayServiceContract::class,
+            \Domain\Services\Api\Ebay\InventoryService::class,
+            true
+        );
+
+        $this->app->singleton('EbayPostOrder', function ($app) {
+            return $app->make(EbayServices::class)->createPostOrder(config('ebays.header'));
+        });
+
+        $this->app->singleton('EbayInventory', function ($app) {
+            return $app->make(EbayServices::class)->createInventory(config('ebays.header'));
+        });
+
+        $this->app->singleton('EbayOAuth', function ($app) {
+            $config = array_merge(config('ebays.header'), [
+                'ruName' => config('ebays.RuName')
+            ]);
+            return $app->make(EbayServices::class)->createOAuth($config);
+        });
     }
 
     /**

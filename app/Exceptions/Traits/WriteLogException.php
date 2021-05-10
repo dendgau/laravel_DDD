@@ -5,8 +5,8 @@ namespace App\Exceptions\Traits;
 use Illuminate\Http\Request;
 
 /**
- * Trait WriteLogException
- * @package App\Exceptions\Traits
+ * traits WriteLogException
+ * @package App\Exceptions\traits
  */
 trait WriteLogException
 {
