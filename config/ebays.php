@@ -6,7 +6,7 @@ return [
     'header' => [
         'requestLanguage' => 'en-US',
         'authorization' => '',
-        'apiVersion' => 'v1',
+        'apiVersion' => 'v2',
         'marketplaceId' => 'EBAY_US'
     ]
 ];

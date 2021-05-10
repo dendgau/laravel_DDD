@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Domain\Contracts\Services\EbayServiceContract;
+use Domain\Services\Api\Ebay\PostOrderService;
 use Domain\Services\Api\Ebay\SimpleService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -39,7 +40,9 @@ class EbayController extends Controller
      */
     public function testInquire(Request $request)
     {
-        return $this->appService->getInquire();
+        /** @var $postOrderService PostOrderService */
+        $postOrderService = app(PostOrderService::class);
+        return $postOrderService->getInquire();
     }
 
     /**
@@ -47,14 +50,14 @@ class EbayController extends Controller
      */
     public function testSimple(Request $request)
     {
-        /** @var SimpleService $simple */
-        $simple = app(SimpleService::class);
+        /** @var SimpleService $simpleService */
+        $simpleService = app(SimpleService::class);
 
-        $respRefreshToken = $simple->refreshToken();
+        $respRefreshToken = $simpleService->refreshToken();
         if ($respRefreshToken->failed()) {
             return $respRefreshToken;
         }
         $token = Arr::get($respRefreshToken->json(), 'access_token');
-        return $simple->createLocation($token);
+        return $simpleService->createLocation($token);
     }
 }
