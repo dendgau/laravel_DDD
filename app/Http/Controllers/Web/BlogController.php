@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShowBlogRequest;
 use Domain\Contracts\Repositories\BlogRepositoryContract;
 use Domain\Contracts\Repositories\CommentRepositoryContract;
 use Domain\Contracts\Repositories\UserRepositoryContract;
@@ -12,6 +13,7 @@ use Domain\Entities\Eloquents\BlogEntity;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Exception;
@@ -48,12 +50,19 @@ class BlogController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param ShowBlogRequest $request
      * @param $id
      * @return mixed
      */
-    public function show(Request $request, $id)
+    public function show(ShowBlogRequest $request, $id)
     {
+        // Example check policy
+//        $blog = $this->getService()->getBlog($id);
+//        $test1 = Gate::check('view', $blog);
+//        $test2 = $request->user()->can('view', $blog);
+//        $test3 = $this->authorize('view', [$blog]);
+//        dd($test1, $test2, $test3);
+
         $blog = $this->getService()->getBlog($id);
         return $this->respView('blog.update', [
             'title' => $blog->title,
